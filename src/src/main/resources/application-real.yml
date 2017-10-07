@@ -1,0 +1,45 @@
+spring:
+  profiles: real
+  
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  
+  datasource:
+    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:sqlite:{DB filepath}
+    username: 
+    password: 
+
+multipart:
+  maxFileSize: 10MB
+  maxRequestSize: 10MB
+
+mybatis:
+  config-location: classpath:/mybatis/config/mybatis-config.xml
+  
+server:
+  port: 8080
+  contextPath: /
+  tomcat:
+    uri-encoding: UTF-8
+  
+security:
+  basic:
+    enabled: false
+        
+management:
+  port: 8091
+  security:
+    enabled: false
+    
+logging:
+  config: classpath:logback-real.xml
+  
+courage:
+  web:
+    title: COURAGE-PORTFOLIO
+  storage:
+    savePath: {attachments filepath}
+    whiteList: jpg, jpeg, png, gif
