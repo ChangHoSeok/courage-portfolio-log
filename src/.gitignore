@@ -1,0 +1,34 @@
+#################
+## Eclipse
+#################
+
+.project
+.metadata
+bin/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+target/
+.externalToolBuilders/
+.loadpath
+.springBeans
+
+#################
+## Java
+#################
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#################
+## Etc
+#################
+*.log
+rebel.xml
