@@ -7,6 +7,7 @@
 
 - SpringBoot 1.5.7
 - Java 1.8
+- Thymeleaf
 - SQLite
 - Mybatis
 - Tomcat 8.5

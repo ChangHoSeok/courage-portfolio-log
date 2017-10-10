@@ -1,10 +1,11 @@
 spring:
   profiles: real
   
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
+  thymeleaf:
+    cache: false
+    enabled: true
+    prefix: classpath:/templates/
+    suffix: .html
   
   datasource:
     driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy

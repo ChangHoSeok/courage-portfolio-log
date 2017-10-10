@@ -20,6 +20,6 @@ public class HelloController {
 		model.addAttribute("today", today.toString());
 		model.addAttribute("listData", helloService.retrieveHelloList());
 		
-		return "hello/index.default.tiles";
+		return "hello/hello";
 	}
 }

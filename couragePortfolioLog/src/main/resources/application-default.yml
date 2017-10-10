@@ -1,14 +1,15 @@
 spring:
   profiles: default
   
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
+  thymeleaf:
+    cache: false
+    enabled: true
+    prefix: classpath:/templates/
+    suffix: .html
   
   datasource:
     driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:sqlite:D:/courage-portfolio.db
+    url: jdbc:log4jdbc:sqlite:C:/dev/courage-portfolio.db
     username: 
     password: 
 
