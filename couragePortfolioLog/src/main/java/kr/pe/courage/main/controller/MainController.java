@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller("mainController")
 public class MainController {
 	
-	@RequestMapping("/")
+	@RequestMapping("/intro")
 	public String retrieveMain() throws Exception {
 		return "freelancer/index";
 	}
