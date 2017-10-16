@@ -8,6 +8,6 @@ public class MainController {
 	
 	@RequestMapping("/intro")
 	public String retrieveMain() throws Exception {
-		return "freelancer/index";
+		return "freelancer/intro";
 	}
 }
