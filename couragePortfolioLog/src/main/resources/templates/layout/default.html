@@ -3,26 +3,42 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	
-<head th:replace="layout/fragments/resourceConfig :: resourceConfigFragment"></head>
+<head th:fragment="resourceConfigFragment">
+
+<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Courage Portfolio Blog</title>
+
+<th:block th:replace="layout/fragments/resourceConfig :: resourceConfig"></th:block>
+<th:block layout:fragment="cssResource"></th:block>
+</head>
+
 <body id="page-top" class="index">
 	<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
 	
 	<nav th:replace="layout/fragments/navigation :: navigationFragment"></nav>
 	
-	<header th:replace="layout/fragments/header :: headerFragment"></header>
-	
 	<div layout:fragment="contents"></div>
 	
 	<footer th:replace="layout/fragments/footer :: footerFragment"></footer>
 	
-	<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
-        <a class="btn btn-primary" href="#page-top">
-            <i class="fa fa-chevron-up"></i>
-        </a>
-    </div>
+	<div th:replace="layout/fragments/footer :: scrollTop"></div>
 	
 	<div th:replace="layout/fragments/modals :: modalsFragment"></div>
+	
+	<!-- jQuery -->
+    <script th:src="@{/webjars/jquery/1.12.4/jquery.min.js}" src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script th:src="@{/webjars/jquery-easing/1.3/jquery.easing.min.js}" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script th:src="@{/webjars/jqbootstrapvalidation/1.3.6/jqBootstrapValidation.js}" src="js/jqBootstrapValidation.js"></script>
+    <script th:src="@{/js/freelancer/contact_me.js}" src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script th:src="@{/js/freelancer/freelancer.min.js}" src="js/freelancer.min.js"></script>
 	
 	<th:block layout:fragment="jsResource"></th:block>
 </body>
