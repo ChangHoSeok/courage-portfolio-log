@@ -7,6 +7,7 @@
 	
 	<properties>
 		<start-class>kr.pe.courage.CourageApplication</start-class>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	
 	<repositories>
@@ -176,6 +177,33 @@
 	
 	<build>
         <plugins>
+        	<!-- yuicompressor:compress -->
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>yuicompressor-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <executions>
+                	<execution>
+                		<phase>prepare-package</phase>
+                		<goals>
+                			<goal>compress</goal>
+                		</goals>
+                	</execution>
+                </executions>
+                <configuration>
+                	<sourceDirectory>${project.basedir}/src/main/resources</sourceDirectory>
+                	<outputDirectory>${project.basedir}/src/main/resources</outputDirectory>
+                    <jswarn>false</jswarn>
+                    <force>true</force>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <suffix>.min</suffix>
+                    <excludes>
+                        <exclude>**/*min.js</exclude>
+                        <exclude>**/*min.css</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

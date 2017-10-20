@@ -40,7 +40,7 @@ logging:
   
 courage:
   web:
-    title: COURAGE-PORTFOLIO
+    title: Courage PortfoLog
   storage:
     savePath: C:/dev/kaki/attachments
     whiteList: jpg, jpeg, png, gif

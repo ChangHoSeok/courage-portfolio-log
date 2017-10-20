@@ -5,7 +5,7 @@
 	
 <head th:fragment="resourceConfigFragment">
 
-<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Courage Portfolio Blog</title>
+<title th:text="${@environment.getProperty('courage.web.title')}" layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Courage PortfoLog</title>
 
 <th:block th:replace="layout/fragments/resourceConfig :: resourceConfig"></th:block>
 <th:block layout:fragment="cssResource"></th:block>
