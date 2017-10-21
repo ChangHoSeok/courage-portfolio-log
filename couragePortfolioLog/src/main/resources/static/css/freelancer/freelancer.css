@@ -124,6 +124,9 @@ header .intro-text .skills {
 .navbar-custom .navbar-nav li a {
   color: white;
 }
+.navbar-custom .navbar-nav li a.sign-in {
+	font-size: 20px;
+}
 .navbar-custom .navbar-nav li a:hover {
   color: #18BC9C;
 }
