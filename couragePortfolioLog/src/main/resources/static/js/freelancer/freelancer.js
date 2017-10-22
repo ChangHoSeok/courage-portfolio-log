@@ -20,7 +20,7 @@
 
     // Closes the Responsive Menu on Menu Item Click
     $('.navbar-collapse ul li a').click(function(){ 
-            $('.navbar-toggle:visible').click();
+    	$('.navbar-toggle:visible').click();
     });
 
     // Offset for Main Navigation
@@ -28,7 +28,7 @@
         offset: {
             top: 100
         }
-    })
+    });
 
     // Floating label headings for the contact form
     $(function() {
@@ -40,5 +40,12 @@
             $(this).removeClass("floating-label-form-group-with-focus");
         });
     });
+    
+    $('#signInModal').on('hidden.bs.modal', function () {
+    	var passwordInput = $(this).find('#password');
+    	
+    	passwordInput.val('');
+    	passwordInput.parent('div.form-group').removeClass("floating-label-form-group-with-value");
+	});
 
 })(jQuery); // End of use strict

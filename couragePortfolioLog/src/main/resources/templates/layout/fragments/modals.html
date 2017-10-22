@@ -229,26 +229,28 @@
     </div>
     
     <!-- Sign-In Modal -->
-    <div class="portfolio-modal modal fade" id="signInModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Sign-In</h2>
-                            <hr class="star-primary" />
-                            <p><input type="password" name="password" id="password" placeholder="패스워드를 입력하세요" /></p>
-                            <button id="btnSubmit" type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-hidden="true">
+    	<div class="modal-dialog">
+	        <div class="modal-content">
+	        	<form th:action="@{/member/auth}" action="" name="memberAuth" id="memberAuth" method="post" novalidate="novalidate">
+		            <div class="modal-header">
+		            	<h4 class="modal-title">Sign In</h4>
+		            </div>
+		            <div class="modal-body">
+						<div class="row control-group">
+							<div class="form-group col-xs-12 floating-label-form-group controls">
+								<label for="password">Password</label>
+								<input type="text" class="form-control" placeholder="Password" name="password" id="password" required="required" data-validation-required-message="비밀번호를 입력하세요." />
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+					</div>
+		            <div class="modal-footer">
+		            	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        			<button type="submit" class="btn btn-success">Sign In</button>
+		            </div>
+				</form>
+	        </div>
         </div>
     </div>
 	    
