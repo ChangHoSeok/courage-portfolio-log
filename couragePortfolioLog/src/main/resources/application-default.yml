@@ -44,3 +44,6 @@ courage:
   storage:
     savePath: C:/dev/kaki/attachments
     whiteList: jpg, jpeg, png, gif
+  resource:
+    jsExt: js
+    cssExt: css

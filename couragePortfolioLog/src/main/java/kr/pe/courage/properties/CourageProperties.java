@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 public class CourageProperties {
 	private Web web = new Web();
 	private Storage file = new Storage();
+	private Resource resource = new Resource();
 
 	public Web getWeb() {
 		return web;
@@ -40,6 +41,14 @@ public class CourageProperties {
 
 	public void setFile(Storage file) {
 		this.file = file;
+	}
+
+	public Resource getResource() {
+		return resource;
+	}
+
+	public void setResource(Resource resource) {
+		this.resource = resource;
 	}
 
 	public static class Web {
@@ -72,6 +81,27 @@ public class CourageProperties {
 
 		public void setWhiteList(String whiteList) {
 			this.whiteList = whiteList;
+		}
+	}
+
+	public static class Resource {
+		private String jsExt;
+		private String cssExt;
+
+		public String getJsExt() {
+			return jsExt;
+		}
+
+		public void setJsExt(String jsExt) {
+			this.jsExt = jsExt;
+		}
+
+		public String getCssExt() {
+			return cssExt;
+		}
+
+		public void setCssExt(String cssExt) {
+			this.cssExt = cssExt;
 		}
 	}
 }

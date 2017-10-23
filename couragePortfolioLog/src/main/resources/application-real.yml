@@ -44,3 +44,6 @@ courage:
   storage:
     savePath: {attachments filepath}
     whiteList: jpg, jpeg, png, gif
+  resource:
+    jsExt: min.js
+    cssExt: min.js
