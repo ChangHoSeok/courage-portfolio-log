@@ -240,9 +240,11 @@
 						<div class="row control-group">
 							<div class="form-group col-xs-12 floating-label-form-group controls">
 								<label for="password">Password</label>
-								<input type="text" class="form-control" placeholder="Password" name="password" id="password"
+								<input type="password" class="form-control" placeholder="Password" name="password" id="password"
 									required="required"
-									data-validation-required-message="비밀번호를 입력하세요." />
+									data-validation-required-message="비밀번호를 입력하세요."
+									data-validation-regex-regex="((?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])).{8,20}"
+									data-validation-regex-message="숫자, 영문자, 특수문자 조합 8~20자리" />
 								<p class="help-block text-danger"></p>
 							</div>
 						</div>

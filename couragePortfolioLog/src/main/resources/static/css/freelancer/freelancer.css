@@ -517,3 +517,7 @@ fieldset[disabled] .btn-success.active {
 div#maincontent {
   outline: none;
 }
+.text-danger {
+	color: #a94442 !important;
+	font-size: 15px;
+}
