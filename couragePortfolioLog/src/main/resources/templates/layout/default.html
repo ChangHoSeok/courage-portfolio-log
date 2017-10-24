@@ -9,6 +9,9 @@
 
 <th:block th:replace="layout/fragments/resourceConfig :: resourceCSS"></th:block>
 <th:block layout:fragment="cssResource"></th:block>
+<script th:inline="javascript">
+	var jsContextPath = /*[[${#httpServletRequest.getContextPath()}]]*/ "";
+</script>
 </head>
 
 <body id="page-top" class="index">

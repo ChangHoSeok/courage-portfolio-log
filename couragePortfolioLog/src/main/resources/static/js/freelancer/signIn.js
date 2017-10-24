@@ -17,11 +17,34 @@ var signIn = (function() {
 	$(moduleID + " input, textarea").jqBootstrapValidation({
 		preventSubmit: true,
 		submitError: function($form, event, errors) {
-            console.info('validation error');
+            
         },
         submitSuccess: function($form, event) {
-        	console.info('validation success');
         	event.preventDefault();
+        	
+        	var params = {
+        		password : $form.find('#password').val()
+        	};
+        	
+        	$.ajax({
+        		url: jsContextPath + "/member/auth",
+        		type: "POST",
+                data: JSON.stringify(params),
+                dataType:'json',
+                contentType : 'application/json; charset=UTF-8',
+                cache: false,
+                success: function(resultData) {
+                    console.info(resultData);
+                },
+                error	: function(x, e) {
+                	// server side validation errors
+                	if (x.status == 400) {
+                		$.each(x.responseJSON.errors, function(idx, error) {
+                			alert(error.defaultMessage);
+                		});
+                	}
+				}
+            });
         }
 	});
 	
