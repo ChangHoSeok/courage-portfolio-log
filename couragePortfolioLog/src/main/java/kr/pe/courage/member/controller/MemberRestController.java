@@ -1,7 +1,10 @@
 package kr.pe.courage.member.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.pe.courage.member.domain.MemberInvalidException;
+import kr.pe.courage.member.domain.MemberNotFoundException;
 import kr.pe.courage.member.domain.MemberSignInValidate;
 import kr.pe.courage.member.domain.MemberVO;
+import kr.pe.courage.member.service.MemberService;
 
 /**
  * <pre>
@@ -29,6 +35,9 @@ import kr.pe.courage.member.domain.MemberVO;
 @RestController("memberController")
 @RequestMapping("/member/*")
 public class MemberRestController {
+	
+	@Autowired
+	private MemberService memberService;
 	
 	/**
 	 * <pre>
@@ -48,8 +57,17 @@ public class MemberRestController {
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody MemberVO auth(HttpSession session,
 			@Validated(MemberSignInValidate.class) @RequestBody MemberVO memberVO) throws Exception {
+		Map<String, Object> resultMap = null;
+		MemberVO loginMember = null;
 		
-		System.out.println("memberController :: auth");
-		return null;
+		try {
+			loginMember = memberService.getMemberLoginInfo(memberVO);
+		} catch (MemberInvalidException e) {
+			
+		} catch (MemberNotFoundException e) {
+			
+		}
+		
+		return loginMember;
 	}
 }

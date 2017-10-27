@@ -31,4 +31,16 @@ public interface MemberRepository {
 	 * @return
 	 */
 	public MemberVO selectMemberForLogin(MemberVO memberVO);
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 사용자 정보 갯수 조회
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo.Seok
+	 * @Date	: 2017. 10. 27.
+	 * @Method Name : selectMemberCount
+	 * @return
+	 */
+	public int selectMemberCount();
 }

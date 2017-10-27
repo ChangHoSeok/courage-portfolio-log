@@ -10,10 +10,11 @@
 	
 	<typeAliases>
 		<typeAlias alias="HelloVO" type="kr.pe.courage.hello.domain.HelloVO"/>
-		<typeAlias alias="HelloVO" type="kr.pe.courage.member.domain.MemberVO"/>
+		<typeAlias alias="MemberVO" type="kr.pe.courage.member.domain.MemberVO"/>
 	</typeAliases>
 	
     <mappers>
         <mapper resource="mybatis/mapper/Hello.xml"/>
+        <mapper resource="mybatis/mapper/Member.xml"/>
     </mappers>
 </configuration>

@@ -6,6 +6,13 @@
 <mapper namespace="kr.pe.courage.member.domain.MemberRepository">
 	
 	<select id="selectMemberForLogin" parameterType="MemberVO" resultType="MemberVO">
-		
+		SELECT SNO, NAME, EMAIL
+		  FROM TB_MEMBER
+		 WHERE PASSWORD = #{password}
+	</select>
+	
+	<select id="selectMemberCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM TB_MEMBER
 	</select>
 </mapper>
