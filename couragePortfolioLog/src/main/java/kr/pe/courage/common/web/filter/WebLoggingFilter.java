@@ -2,7 +2,6 @@ package kr.pe.courage.common.web.filter;
 
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.stream.Collectors;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,6 +12,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+
+import kr.pe.courage.common.web.wrapper.RequestLoggingWrapper;
 
 /**
  * <pre>
@@ -150,7 +151,8 @@ public class WebLoggingFilter implements Filter {
 				}
 				
 				if (request.getMethod().toUpperCase().equals("POST") || request.getMethod().toUpperCase().equals("PUT")) {
-					logger.info("request body :: " + request.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
+					RequestLoggingWrapper requestLoggingWrapper = new RequestLoggingWrapper(request);
+					logger.info("request body :: " + requestLoggingWrapper.getBody());
 				}
 				
 				logger.info("################ Request Info ################");
