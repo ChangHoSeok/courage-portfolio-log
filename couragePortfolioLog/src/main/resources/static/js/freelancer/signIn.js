@@ -36,6 +36,9 @@ var signIn = (function() {
                 success: function(resultData) {
                 	console.info(resultData);
                     if (resultData.isLogin) {
+                    	$("#signin").hide();
+                		$("#avartar").show();
+                		
                     	$(moduleID).modal("toggle");
                     } else {
                     	alert("패스워드 인증 실패!!");
@@ -53,9 +56,16 @@ var signIn = (function() {
         }
 	});
 	
+	function init() {
+		$("#signin").show();
+		$("#avartar").hide();
+	}
+	
 	return {
 		init : function() {
-			
-		},
+			init();
+		}
 	}
 })();
+
+signIn.init();

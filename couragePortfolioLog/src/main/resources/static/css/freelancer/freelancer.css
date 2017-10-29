@@ -521,3 +521,17 @@ div#maincontent {
 	color: #a94442 !important;
 	font-size: 15px;
 }
+#avartar a {
+	padding: 0 15px !important;
+	margin: 0 !important;
+}
+img.rotate {
+	width: 50px;
+	border-radius: 50em;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background-color: #d9d9d9
+}
