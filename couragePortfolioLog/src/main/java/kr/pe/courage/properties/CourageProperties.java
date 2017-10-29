@@ -26,6 +26,7 @@ public class CourageProperties {
 	private Web web = new Web();
 	private Storage file = new Storage();
 	private Resource resource = new Resource();
+	private Session session = new Session();
 
 	public Web getWeb() {
 		return web;
@@ -49,6 +50,14 @@ public class CourageProperties {
 
 	public void setResource(Resource resource) {
 		this.resource = resource;
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
 	}
 
 	public static class Web {
@@ -102,6 +111,48 @@ public class CourageProperties {
 
 		public void setCssExt(String cssExt) {
 			this.cssExt = cssExt;
+		}
+	}
+	
+	public static class Session {
+		private Keys keys;
+
+		public Keys getKeys() {
+			return keys;
+		}
+
+		public void setKeys(Keys keys) {
+			this.keys = keys;
+		}
+	}
+
+	public static class Keys {
+		private String object;
+		private String name;
+		private String email;
+
+		public String getObject() {
+			return object;
+		}
+
+		public void setObject(String object) {
+			this.object = object;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
 		}
 	}
 }

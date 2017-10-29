@@ -5,6 +5,10 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import kr.pe.courage.common.CommonVO;
 
 /**
@@ -32,6 +36,7 @@ public class MemberVO extends CommonVO {
 			regexp = "((?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])).{8,20}",
 			message = "숫자, 영문자, 특수문자 조합 8~20자리",
 			groups = {MemberSignInValidate.class})
+	@JsonInclude(Include.NON_EMPTY)
 	private String password;
 	private String email;
 

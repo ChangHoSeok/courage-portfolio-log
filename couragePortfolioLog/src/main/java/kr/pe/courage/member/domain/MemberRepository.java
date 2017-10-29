@@ -34,6 +34,18 @@ public interface MemberRepository {
 	
 	/**
 	 * <pre>
+	 * 1. 개요 : 패스워드 암호화를 위한 SALT 조회
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo Seok
+	 * @Date	: 2017. 10. 29.
+	 * @Method Name : selectMemberSalt
+	 * @return
+	 */
+	public String selectMemberSalt();
+	
+	/**
+	 * <pre>
 	 * 1. 개요 : 사용자 정보 갯수 조회
 	 * </pre>
 	 * 

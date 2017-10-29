@@ -1,5 +1,6 @@
 package kr.pe.courage.member.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import kr.pe.courage.member.domain.MemberNotFoundException;
 import kr.pe.courage.member.domain.MemberSignInValidate;
 import kr.pe.courage.member.domain.MemberVO;
 import kr.pe.courage.member.service.MemberService;
+import kr.pe.courage.properties.CourageProperties;
 
 /**
  * <pre>
@@ -39,6 +41,9 @@ public class MemberRestController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private CourageProperties courageProperties;
+	
 	/**
 	 * <pre>
 	 * 1. 개요 : 회원인증
@@ -55,19 +60,26 @@ public class MemberRestController {
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public @ResponseBody MemberVO auth(HttpSession session,
+	public @ResponseBody Map auth(HttpSession session,
 			@Validated(MemberSignInValidate.class) @RequestBody MemberVO memberVO) throws Exception {
-		Map<String, Object> resultMap = null;
+		Map<String, Object> resultMap = new HashMap<>();
 		MemberVO loginMember = null;
 		
 		try {
 			loginMember = memberService.getMemberLoginInfo(memberVO);
+			
+			resultMap.put("isLogin", Boolean.TRUE);
+			resultMap.put("result", loginMember);
+			
+			session.setAttribute(courageProperties.getSession().getKeys().getObject(), loginMember);
+			session.setAttribute(courageProperties.getSession().getKeys().getName(), loginMember.getName());
+			session.setAttribute(courageProperties.getSession().getKeys().getEmail(), loginMember.getEmail());
 		} catch (MemberInvalidException e) {
-			
+			resultMap.put("isLogin", Boolean.FALSE);
 		} catch (MemberNotFoundException e) {
-			
+			resultMap.put("isLogin", Boolean.FALSE);
 		}
 		
-		return loginMember;
+		return resultMap;
 	}
 }

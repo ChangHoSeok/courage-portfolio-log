@@ -11,6 +11,11 @@
 		 WHERE PASSWORD = #{password}
 	</select>
 	
+	<select id="selectMemberSalt" resultType="java.lang.String">
+		SELECT SALT
+		  FROM TB_MEMBER
+	</select>
+	
 	<select id="selectMemberCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
 		  FROM TB_MEMBER

@@ -3,6 +3,7 @@ package kr.pe.courage.member.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.pe.courage.common.util.encrypt.SHAEncryptString;
 import kr.pe.courage.member.domain.MemberInvalidException;
 import kr.pe.courage.member.domain.MemberNotFoundException;
 import kr.pe.courage.member.domain.MemberRepository;
@@ -52,6 +53,9 @@ public class MemberService {
 		if (memberCnt != 1) {
 			throw new MemberInvalidException("사용자 정보 갯수 : " + memberCnt);
 		} else {
+			String salt = memberRepository.selectMemberSalt();
+			memberVO.setPassword(SHAEncryptString.encSHA512(memberVO.getPassword(), salt));
+			
 			resultVO = memberRepository.selectMemberForLogin(memberVO);
 			
 			// 사용자 정보가 존재하지 않음은 패스워드가 틀림을 의미 한다.

@@ -34,7 +34,12 @@ var signIn = (function() {
                 contentType : 'application/json; charset=UTF-8',
                 cache: false,
                 success: function(resultData) {
-                    console.info(resultData);
+                	console.info(resultData);
+                    if (resultData.isLogin) {
+                    	$(moduleID).modal("toggle");
+                    } else {
+                    	alert("패스워드 인증 실패!!");
+                    }
                 },
                 error	: function(x, e) {
                 	// server side validation errors

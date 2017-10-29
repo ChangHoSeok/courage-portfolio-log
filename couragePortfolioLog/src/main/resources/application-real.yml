@@ -13,10 +13,6 @@ spring:
     username: 
     password: 
 
-multipart:
-  maxFileSize: 10MB
-  maxRequestSize: 10MB
-
 mybatis:
   config-location: classpath:/mybatis/config/mybatis-config.xml
   
@@ -25,6 +21,8 @@ server:
   contextPath: /
   tomcat:
     uri-encoding: UTF-8
+  session:
+    timeout: 3600
   
 security:
   basic:
@@ -47,3 +45,8 @@ courage:
   resource:
     jsExt: min.js
     cssExt: min.js
+  session:
+    keys:
+      object: loginInfo
+      name: name
+      email: email
