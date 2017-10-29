@@ -68,7 +68,7 @@ hr.star-primary:after {
 }
 header {
   text-align: center;
-  background: #18BC9C;
+  background: #18B3BC;
   color: white;
 }
 header .container {
@@ -123,6 +123,9 @@ header .intro-text .skills {
 }
 .navbar-custom .navbar-nav li a {
   color: white;
+}
+.navbar-custom .navbar-nav li a.sign-in {
+	font-size: 20px;
 }
 .navbar-custom .navbar-nav li a:hover {
   color: #18BC9C;
@@ -513,4 +516,8 @@ fieldset[disabled] .btn-success.active {
 }
 div#maincontent {
   outline: none;
+}
+.text-danger {
+	color: #a94442 !important;
+	font-size: 15px;
 }

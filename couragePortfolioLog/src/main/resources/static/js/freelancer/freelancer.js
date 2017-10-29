@@ -20,7 +20,7 @@
 
     // Closes the Responsive Menu on Menu Item Click
     $('.navbar-collapse ul li a').click(function(){ 
-            $('.navbar-toggle:visible').click();
+    	$('.navbar-toggle:visible').click();
     });
 
     // Offset for Main Navigation
@@ -28,7 +28,7 @@
         offset: {
             top: 100
         }
-    })
+    });
 
     // Floating label headings for the contact form
     $(function() {
@@ -40,5 +40,4 @@
             $(this).removeClass("floating-label-form-group-with-focus");
         });
     });
-
 })(jQuery); // End of use strict

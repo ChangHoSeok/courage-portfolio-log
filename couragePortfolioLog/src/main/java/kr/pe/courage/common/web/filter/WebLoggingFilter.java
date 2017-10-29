@@ -87,7 +87,7 @@ public class WebLoggingFilter implements Filter {
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest) req;
+		RequestLoggingWrapper request = new RequestLoggingWrapper((HttpServletRequest) req);
 		
 		if (!isSkipURI(request)) {
 			logger.info("=========================== Courage Logging ===========================");
@@ -151,8 +151,7 @@ public class WebLoggingFilter implements Filter {
 				}
 				
 				if (request.getMethod().toUpperCase().equals("POST") || request.getMethod().toUpperCase().equals("PUT")) {
-					RequestLoggingWrapper requestLoggingWrapper = new RequestLoggingWrapper(request);
-					logger.info("request body :: " + requestLoggingWrapper.getBody());
+					logger.info("request body :: " + request.getBody());
 				}
 				
 				logger.info("################ Request Info ################");
@@ -162,7 +161,7 @@ public class WebLoggingFilter implements Filter {
 			logger.info("=========================== Courage Logging ===========================");
 		}
 		
-		chain.doFilter(req, res);
+		chain.doFilter(request, res);
 	}
 	
 	private boolean isSkipURI(HttpServletRequest request) {

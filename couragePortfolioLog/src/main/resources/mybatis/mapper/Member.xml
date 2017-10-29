@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="kr.pe.courage.member.domain.MemberRepository">
+	
+	<select id="selectMemberForLogin" parameterType="MemberVO" resultType="MemberVO">
+		SELECT SNO, NAME, EMAIL
+		  FROM TB_MEMBER
+		 WHERE PASSWORD = #{password}
+	</select>
+	
+	<select id="selectMemberSalt" resultType="java.lang.String">
+		SELECT SALT
+		  FROM TB_MEMBER
+	</select>
+	
+	<select id="selectMemberCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM TB_MEMBER
+	</select>
+</mapper>

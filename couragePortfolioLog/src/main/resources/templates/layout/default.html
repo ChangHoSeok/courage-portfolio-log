@@ -5,10 +5,13 @@
 	
 <head th:fragment="resourceConfigFragment">
 
-<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Courage Portfolio Blog</title>
+<title th:text="${@environment.getProperty('courage.web.title')}" layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Courage PortfoLog</title>
 
-<th:block th:replace="layout/fragments/resourceConfig :: resourceConfig"></th:block>
+<th:block th:replace="layout/fragments/resourceConfig :: resourceCSS"></th:block>
 <th:block layout:fragment="cssResource"></th:block>
+<script th:inline="javascript">
+	var jsContextPath = /*[[${#httpServletRequest.getContextPath()}]]*/ "";
+</script>
 </head>
 
 <body id="page-top" class="index">
@@ -22,24 +25,9 @@
 	
 	<div th:replace="layout/fragments/footer :: scrollTop"></div>
 	
-	<div th:replace="layout/fragments/modals :: modalsFragment"></div>
+	<th:block th:replace="layout/fragments/modals :: modalsFragment"></th:block>
 	
-	<!-- jQuery -->
-    <script th:src="@{/webjars/jquery/1.12.4/jquery.min.js}" src="vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}" src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script th:src="@{/webjars/jquery-easing/1.3/jquery.easing.min.js}" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script th:src="@{/webjars/jqbootstrapvalidation/1.3.6/jqBootstrapValidation.js}" src="js/jqBootstrapValidation.js"></script>
-    <script th:src="@{/js/freelancer/contact_me.js}" src="js/contact_me.js"></script>
-
-    <!-- Theme JavaScript -->
-    <script th:src="@{/js/freelancer/freelancer.min.js}" src="js/freelancer.min.js"></script>
-	
+	<th:block th:replace="layout/fragments/resourceConfig :: resourceJS"></th:block>
 	<th:block layout:fragment="jsResource"></th:block>
 </body>
 </html>
