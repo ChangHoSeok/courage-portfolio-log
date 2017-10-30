@@ -62,9 +62,7 @@ var signIn = (function() {
 	}
 	
 	return {
-		init : function() {
-			init();
-		}
+		init : init
 	}
 })();
 

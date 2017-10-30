@@ -50,3 +50,9 @@ courage:
       object: loginInfo
       name: name
       email: email
+      gravatarURL: gravatarURL
+  link:
+    gravatar:
+      url: https://www.gravatar.com/avatar/
+      defaultImg: /images/avatar/anonymous.png
+      size: 50

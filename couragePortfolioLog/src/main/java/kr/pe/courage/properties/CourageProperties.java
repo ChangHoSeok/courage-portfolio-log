@@ -27,6 +27,7 @@ public class CourageProperties {
 	private Storage file = new Storage();
 	private Resource resource = new Resource();
 	private Session session = new Session();
+	private Link link = new Link();
 
 	public Web getWeb() {
 		return web;
@@ -58,6 +59,14 @@ public class CourageProperties {
 
 	public void setSession(Session session) {
 		this.session = session;
+	}
+
+	public Link getLink() {
+		return link;
+	}
+
+	public void setLink(Link link) {
+		this.link = link;
 	}
 
 	public static class Web {
@@ -113,7 +122,7 @@ public class CourageProperties {
 			this.cssExt = cssExt;
 		}
 	}
-	
+
 	public static class Session {
 		private Keys keys;
 
@@ -125,11 +134,24 @@ public class CourageProperties {
 			this.keys = keys;
 		}
 	}
+	
+	public static class Link {
+		private Gravatar gravatar;
+
+		public Gravatar getGravatar() {
+			return gravatar;
+		}
+
+		public void setGravatar(Gravatar gravatar) {
+			this.gravatar = gravatar;
+		}
+	}
 
 	public static class Keys {
 		private String object;
 		private String name;
 		private String email;
+		private String gravatarURL;
 
 		public String getObject() {
 			return object;
@@ -153,6 +175,44 @@ public class CourageProperties {
 
 		public void setEmail(String email) {
 			this.email = email;
+		}
+		
+		public String getGravatarURL() {
+			return gravatarURL;
+		}
+
+		public void setGravatarURL(String gravatarURL) {
+			this.gravatarURL = gravatarURL;
+		}
+	}
+
+	public static class Gravatar {
+		private String url;
+		private String defaultImg;
+		private String size;
+
+		public String getUrl() {
+			return url;
+		}
+
+		public void setUrl(String url) {
+			this.url = url;
+		}
+
+		public String getDefaultImg() {
+			return defaultImg;
+		}
+
+		public void setDefaultImg(String defaultImg) {
+			this.defaultImg = defaultImg;
+		}
+
+		public String getSize() {
+			return size;
+		}
+
+		public void setSize(String size) {
+			this.size = size;
 		}
 	}
 }
