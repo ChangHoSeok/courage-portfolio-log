@@ -39,6 +39,7 @@ public class MemberVO extends CommonVO {
 	@JsonInclude(Include.NON_EMPTY)
 	private String password;
 	private String email;
+	private String gravatarUrl;
 
 	public String getSno() {
 		return sno;
@@ -70,5 +71,13 @@ public class MemberVO extends CommonVO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getGravatarUrl() {
+		return gravatarUrl;
+	}
+
+	public void setGravatarUrl(String gravatarUrl) {
+		this.gravatarUrl = gravatarUrl;
 	}
 }

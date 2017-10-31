@@ -34,11 +34,8 @@ var signIn = (function() {
                 contentType : 'application/json; charset=UTF-8',
                 cache: false,
                 success: function(resultData) {
-                	console.info(resultData);
                     if (resultData.isLogin) {
-                    	$("#signin").hide();
-                		$("#avartar").show();
-                		
+                		initMemberInfo();
                     	$(moduleID).modal("toggle");
                     } else {
                     	alert("패스워드 인증 실패!!");
@@ -56,9 +53,22 @@ var signIn = (function() {
         }
 	});
 	
+	function checkSignIn() {
+		
+	}
+	
+	function initMemberInfo() {
+		$("#gravatarImg").attr("src", resultData.memberInfo.gravatarUrl);
+		
+		$("#signin").hide();
+		$("#avartar").show();
+	}
+	
 	function init() {
 		$("#signin").show();
 		$("#avartar").hide();
+		
+		checkSignIn();
 	}
 	
 	return {

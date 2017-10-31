@@ -3,6 +3,7 @@ package kr.pe.courage.member.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.pe.courage.common.link.gravatar.GravatarGenerator;
 import kr.pe.courage.common.util.encrypt.SHAEncryptString;
 import kr.pe.courage.member.domain.MemberInvalidException;
 import kr.pe.courage.member.domain.MemberNotFoundException;
@@ -28,6 +29,9 @@ import kr.pe.courage.member.domain.MemberVO;
 public class MemberService {
 	@Autowired
 	private MemberRepository memberRepository;
+	
+	@Autowired
+	private GravatarGenerator gravatarGenerator;
 	
 	/**
 	 * <pre>
@@ -60,8 +64,11 @@ public class MemberService {
 			
 			// 사용자 정보가 존재하지 않음은 패스워드가 틀림을 의미 한다.
 			if (resultVO == null) {
-				throw new MemberNotFoundException("패스워드가 맞지않음");
+				throw new MemberNotFoundException("패스워드 인증 실패");
 			}
+			
+			// Gravatar URL 설정
+			resultVO.setGravatarUrl(gravatarGenerator.getGravatarURL(resultVO.getEmail()));
 		}
 		
 		return resultVO;

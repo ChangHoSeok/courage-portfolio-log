@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.pe.courage.common.link.gravatar.GravatarGenerator;
 import kr.pe.courage.member.domain.MemberInvalidException;
 import kr.pe.courage.member.domain.MemberNotFoundException;
 import kr.pe.courage.member.domain.MemberSignInValidate;
@@ -45,9 +44,6 @@ public class MemberRestController {
 	@Autowired
 	private CourageProperties courageProperties;
 	
-	@Autowired
-	private GravatarGenerator gravatarGenerator;
-	
 	/**
 	 * <pre>
 	 * 1. 개요 : 회원인증
@@ -73,12 +69,12 @@ public class MemberRestController {
 			loginMember = memberService.getMemberLoginInfo(memberVO);
 			
 			resultMap.put("isLogin", Boolean.TRUE);
-			resultMap.put("result", loginMember);
+			resultMap.put("memberInfo", loginMember);
 			
 			session.setAttribute(courageProperties.getSession().getKeys().getObject(), loginMember);
 			session.setAttribute(courageProperties.getSession().getKeys().getName(), loginMember.getName());
 			session.setAttribute(courageProperties.getSession().getKeys().getEmail(), loginMember.getEmail());
-			session.setAttribute("gravatarURL", gravatarGenerator.getGravatarURL(loginMember.getEmail()));
+			session.setAttribute(courageProperties.getSession().getKeys().getGravatarURL(), loginMember.getGravatarUrl());
 		} catch (MemberInvalidException e) {
 			resultMap.put("isLogin", Boolean.FALSE);
 		} catch (MemberNotFoundException e) {
