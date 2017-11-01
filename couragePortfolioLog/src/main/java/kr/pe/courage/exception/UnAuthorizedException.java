@@ -21,5 +21,5 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ResponseStatus(value = HttpStatus.UNAUTHORIZED, reason = "API 이용권한 없음")
 public class UnAuthorizedException extends RuntimeException {
-
+	private static final long serialVersionUID = 4335985192692518020L;
 }

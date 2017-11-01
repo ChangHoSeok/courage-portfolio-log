@@ -35,7 +35,7 @@ var signIn = (function() {
                 cache: false,
                 success: function(resultData) {
                     if (resultData.isLogin) {
-                		initMemberInfo();
+                    	checkSignIn();
                     	$(moduleID).modal("toggle");
                     } else {
                     	alert("패스워드 인증 실패!!");
@@ -54,20 +54,31 @@ var signIn = (function() {
 	});
 	
 	function checkSignIn() {
-		
-	}
-	
-	function initMemberInfo() {
-		$("#gravatarImg").attr("src", resultData.memberInfo.gravatarUrl);
-		
-		$("#signin").hide();
-		$("#avartar").show();
+		$.ajax({
+    		url: jsContextPath + "/member/me",
+    		type: "GET",
+            dataType:'json',
+            contentType : 'application/json; charset=UTF-8',
+            cache: false,
+            success: function(resultData) {
+            	if (resultData) {
+            		$("#gravatarImg").attr("src", resultData.memberInfo.gravatarUrl);
+            		
+            		$("#signin").hide();
+            		$("#avartar").show();
+            	} else {
+            		$("#signin").show();
+            		$("#avartar").hide();
+            	}
+            },
+            error: function(x, e) {
+            	$("#signin").show();
+        		$("#avartar").hide();
+            }
+        });
 	}
 	
 	function init() {
-		$("#signin").show();
-		$("#avartar").hide();
-		
 		checkSignIn();
 	}
 	

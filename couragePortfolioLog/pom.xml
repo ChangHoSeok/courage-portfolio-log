@@ -184,7 +184,7 @@
 	
 	<build>
         <plugins>
-        	<!-- yuicompressor:compress -->
+        	<!-- yuicompressor:compress
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>yuicompressor-maven-plugin</artifactId>
@@ -210,6 +210,7 @@
                     </excludes>
                 </configuration>
             </plugin>
+             -->
             
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
