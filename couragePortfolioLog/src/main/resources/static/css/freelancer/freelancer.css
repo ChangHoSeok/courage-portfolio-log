@@ -535,3 +535,12 @@ img.rotate {
 	transition: all .3s ease-in-out;
 	background-color: #d9d9d9
 }
+@media (max-width: 767px) {
+	img.rotate {
+		width: 35px
+	}
+}
+#avartar-xs {
+	float: right;
+	margin: 7px 15px 0 0
+}

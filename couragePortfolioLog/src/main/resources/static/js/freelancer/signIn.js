@@ -62,7 +62,7 @@ var signIn = (function() {
             cache: false,
             success: function(resultData) {
             	if (resultData) {
-            		$("#gravatarImg").attr("src", resultData.memberInfo.gravatarUrl);
+            		$(".gravatarImg").attr("src", resultData.memberInfo.gravatarUrl);
             		
             		$("#signin").hide();
             		$("#avartar").show();

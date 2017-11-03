@@ -7,10 +7,17 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
+                <a class="navbar-brand" href="#page-top">Courage</a>
+                
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top">Courage</a>
+                
+                <span id="avartar-xs" class="visible-xs" style="margin: 5px 15px 0 0; float: right;">
+	               	<a href="#">
+						<img alt="avatar" th:src="@{/images/avatar/anonymous.png}" src="/images/avatar/anonymous.png" class="rotate gravatarImg" />
+					</a>
+				</span>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,7 +42,7 @@
                     </li>
                     <li id="avartar" class="hidden-xs" style="display: none;">
                     	<a href="#">
-                    		<img id="gravatarImg" alt="avatar" th:src="@{/images/avatar/anonymous.png}" src="/images/avatar/anonymous.png" class="rotate" />
+                    		<img alt="avatar" th:src="@{/images/avatar/anonymous.png}" src="/images/avatar/anonymous.png" class="rotate gravatarImg" />
                     	</a>
                     </li>
                 </ul>
