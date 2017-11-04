@@ -521,10 +521,6 @@ div#maincontent {
 	color: #a94442 !important;
 	font-size: 15px;
 }
-#avartar a {
-	padding: 0 15px !important;
-	margin: 0 !important;
-}
 img.rotate {
 	width: 50px;
 	border-radius: 50em;
@@ -543,4 +539,7 @@ img.rotate {
 #avartar-xs {
 	float: right;
 	margin: 7px 15px 0 0
+}
+.dropdown a {
+	color: #333 !important
 }
