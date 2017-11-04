@@ -51,17 +51,17 @@ public class MemberRestController {
 	 * </pre>
 	 * 
 	 * @Date	: 2017. 10. 27.
-	 * @Method Name : auth
+	 * @Method Name : signin
 	 * @param session
 	 * @param memberVO
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "auth",
+	@RequestMapping(value = "signin",
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public @ResponseBody Map<String, Object> auth(HttpSession session,
+	public @ResponseBody Map<String, Object> signIn(HttpSession session,
 			@Validated(MemberSignInValidate.class) @RequestBody MemberVO memberVO) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 		MemberVO loginMember = null;
@@ -83,6 +83,26 @@ public class MemberRestController {
 		}
 		
 		return resultMap;
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 회원 인증해제
+	 * </pre>
+	 * 
+	 * @Date	: 2017. 11. 4.
+	 * @Method Name : signOut
+	 * @param session
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "signout",
+			method = RequestMethod.POST)
+	public void signOut(HttpSession session) throws Exception {
+		session.removeAttribute(courageProperties.getSession().getKeys().getObject());
+		session.removeAttribute(courageProperties.getSession().getKeys().getName());
+		session.removeAttribute(courageProperties.getSession().getKeys().getEmail());
+		session.removeAttribute(courageProperties.getSession().getKeys().getGravatarURL());
+		session.invalidate();
 	}
 	
 	/**

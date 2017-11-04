@@ -1,8 +1,11 @@
 /**
  * 2017. 10. 24
- * SignIn 관련 Javascript
+ * Courage 공통 Javascript
  */
 
+/**
+ * 사용자 인증
+ */
 var signIn = (function() {
 	var moduleID = "#signInModal";
 	
@@ -27,7 +30,7 @@ var signIn = (function() {
         	};
         	
         	$.ajax({
-        		url: jsContextPath + "/member/auth",
+        		url: jsContextPath + "/member/signin",
         		type: "POST",
                 data: JSON.stringify(params),
                 dataType:'json',
@@ -47,6 +50,8 @@ var signIn = (function() {
                 		$.each(x.responseJSON.errors, function(idx, error) {
                 			alert(error.defaultMessage);
                 		});
+                	} else {
+                		alert("오류가 발생되었습니다.");
                 	}
 				}
             });
@@ -64,16 +69,16 @@ var signIn = (function() {
             	if (resultData) {
             		$(".gravatarImg").attr("src", resultData.memberInfo.gravatarUrl);
             		
-            		$("#signin").hide();
-            		$("#avartar").show();
+            		$("#signin").attr("style", "display:none !important");
+            		$(".avartar").show();
             	} else {
             		$("#signin").show();
-            		$("#avartar").hide();
+            		$(".avartar").attr("style", "display:none !important");
             	}
             },
             error: function(x, e) {
             	$("#signin").show();
-        		$("#avartar").hide();
+        		$(".avartar").attr("style", "display:none !important");
             }
         });
 	}
@@ -83,7 +88,28 @@ var signIn = (function() {
 	}
 	
 	return {
-		init : init
+		init : init,
+		checkSignIn : checkSignIn
+	}
+})();
+
+/**
+ * 인증 해제
+ */
+var signOut = (function() {
+	$(".signOut").on("click", function() {
+		$.ajax({
+    		url: jsContextPath + "/member/signout",
+    		type: "POST",
+            cache: false,
+            success: function() {
+                signIn.checkSignIn();
+            }
+        });
+	})
+	
+	return {
+		
 	}
 })();
 
