@@ -6,18 +6,21 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.pe.courage.exception.SessionExpiredException;
 import kr.pe.courage.member.domain.MemberInvalidException;
 import kr.pe.courage.member.domain.MemberNotFoundException;
 import kr.pe.courage.member.domain.MemberSignInValidate;
+import kr.pe.courage.member.domain.MemberUpdateValidate;
 import kr.pe.courage.member.domain.MemberVO;
 import kr.pe.courage.member.service.MemberService;
 import kr.pe.courage.properties.CourageProperties;
@@ -36,7 +39,7 @@ import kr.pe.courage.properties.CourageProperties;
  * </pre>
  */
 @RestController("memberController")
-@RequestMapping("/member/*")
+@RequestMapping("/member")
 public class MemberRestController {
 	
 	@Autowired
@@ -57,7 +60,7 @@ public class MemberRestController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "signin",
+	@RequestMapping(value = "/signin",
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -95,7 +98,7 @@ public class MemberRestController {
 	 * @param session
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "signout",
+	@RequestMapping(value = "/signout",
 			method = RequestMethod.POST)
 	public void signOut(HttpSession session) throws Exception {
 		session.removeAttribute(courageProperties.getSession().getKeys().getObject());
@@ -116,7 +119,7 @@ public class MemberRestController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "me",
+	@RequestMapping(value = "",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody Map<String, Object> getMyInfo(HttpSession session) throws Exception {
@@ -130,5 +133,26 @@ public class MemberRestController {
 		resultMap.put("memberInfo", loginMember);
 		
 		return resultMap;
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 회원정보 수정
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo Seok
+	 * @Date	: 2017. 11. 5.
+	 * @Method Name : updateMember
+	 * @param session
+	 * @param memberVO
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "",
+			method = RequestMethod.PUT,
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateMember(HttpSession session,
+		@Validated(MemberUpdateValidate.class) @RequestBody MemberVO memberVO) throws Exception {
+		
 	}
 }

@@ -441,7 +441,7 @@ fieldset[disabled] .btn-success.active {
   box-shadow: none;
   border: none;
   min-height: 100%;
-  padding: 100px 0;
+  padding: 85px 0;
   text-align: center;
 }
 .portfolio-modal .modal-content h2 {
@@ -456,20 +456,20 @@ fieldset[disabled] .btn-success.active {
 }
 .portfolio-modal .close-modal {
   position: absolute;
-  width: 75px;
-  height: 75px;
+  width: 35px;
+  height: 35px;
   background-color: transparent;
   top: 25px;
-  right: 25px;
+  right: 40px;
   cursor: pointer;
 }
 .portfolio-modal .close-modal:hover {
   opacity: 0.3;
 }
 .portfolio-modal .close-modal .lr {
-  height: 75px;
+  height: 35px;
   width: 1px;
-  margin-left: 35px;
+  margin-left: 17px;
   background-color: #2C3E50;
   transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -479,7 +479,7 @@ fieldset[disabled] .btn-success.active {
   z-index: 1051;
 }
 .portfolio-modal .close-modal .lr .rl {
-  height: 75px;
+  height: 35px;
   width: 1px;
   background-color: #2C3E50;
   transform: rotate(90deg);
@@ -542,4 +542,7 @@ img.rotate {
 }
 .dropdown a {
 	color: #333 !important
+}
+#profileForm .control-group {
+	text-align: left;
 }

@@ -258,6 +258,57 @@
         </div>
     </div>
 	
+	<!-- Profile Modal -->
+	<div class="portfolio-modal modal fade" id="profileModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Profile</h2>
+                            <hr class="star-primary" />
+                            
+                            <form th:action="@{/member}" name="profileForm" id="profileForm" novalidate="novalidate">
+		                        <div class="row control-group">
+		                            <div class="form-group col-xs-12 floating-label-form-group controls">
+		                                <label for="name">Name</label>
+		                                <input type="text" name="name" class="form-control" placeholder="Name" id="name"
+		                                	required="required"
+		                                	data-validation-required-message="이름을 입력하세요." />
+		                                <p class="help-block text-danger"></p>
+		                            </div>
+		                        </div>
+		                        <div class="row control-group">
+		                            <div class="form-group col-xs-12 floating-label-form-group controls">
+		                                <label for="email">Email Address</label>
+		                                <input type="email" name="email" class="form-control" placeholder="Email Address" id="email"
+		                                	required="required"
+		                                	data-validation-required-message="Email을 입력하세요."
+		                                	data-validation-email-message="Email형식이 맞지 않습니다." />
+		                                <p class="help-block text-danger"></p>
+		                            </div>
+		                        </div>
+		                        <br />
+		                        <div class="row">
+		                            <div class="form-group col-xs-12">
+		                                <button id="changePassword" type="button" class="btn btn-info">비밀번호 변경</button>&nbsp;
+		                                <button id="save" type="submit" class="btn btn-success">저장</button>&nbsp;
+		                                <button id="btnSubmit" type="button" class="btn btn-default hidden-xs" data-dismiss="modal"><i class="fa fa-times"></i> 닫기</button>
+		                            </div>
+		                        </div>
+		                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </th:block>
 </body>
 </html>

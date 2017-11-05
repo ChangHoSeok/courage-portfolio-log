@@ -59,28 +59,17 @@ var signIn = (function() {
 	});
 	
 	function checkSignIn() {
-		$.ajax({
-    		url: jsContextPath + "/member/me",
-    		type: "GET",
-            dataType:'json',
-            contentType : 'application/json; charset=UTF-8',
-            cache: false,
-            success: function(resultData) {
-            	if (resultData) {
-            		$(".gravatarImg").attr("src", resultData.memberInfo.gravatarUrl);
-            		
-            		$("#signin").attr("style", "display:none !important");
-            		$(".avartar").show();
-            	} else {
-            		$("#signin").show();
-            		$(".avartar").attr("style", "display:none !important");
-            	}
-            },
-            error: function(x, e) {
-            	$("#signin").show();
-        		$(".avartar").attr("style", "display:none !important");
-            }
-        });
+		var memberInfo = member.getMember();
+		
+		if(memberInfo === undefined) {
+			$("#signin").show();
+    		$(".avartar").attr("style", "display:none !important");
+		} else {
+			$(".gravatarImg").attr("src", memberInfo.gravatarUrl);
+    		
+    		$("#signin").attr("style", "display:none !important");
+    		$(".avartar").show();
+		}
 	}
 	
 	function init() {
@@ -90,6 +79,38 @@ var signIn = (function() {
 	return {
 		init : init,
 		checkSignIn : checkSignIn
+	}
+})();
+
+/**
+ * 회원정보
+ */
+var member = (function() {
+	function getMember() {
+		var memberInfo = undefined;
+		
+		$.ajax({
+    		url: jsContextPath + "/member",
+    		type: "GET",
+            dataType:'json',
+            contentType : 'application/json; charset=UTF-8',
+            cache: false,
+            success: function(resultData) {
+            	if (resultData) {
+            		memberInfo = resultData.memberInfo;
+            	}
+            },
+            error: function(x, e) {
+            	alert("오류가 발생되었습니다.");
+            },
+            async: false
+        });
+		
+		return memberInfo;
+	}
+	
+	return {
+		getMember : getMember
 	}
 })();
 
@@ -107,6 +128,61 @@ var signOut = (function() {
             }
         });
 	})
+	
+	return {
+		
+	}
+})();
+
+var profile = (function() {
+	var moduleID = "#profileModal";
+	
+	$(moduleID).on('show.bs.modal', function () {
+		var memberInfo = member.getMember();
+		$(moduleID).find("#name").val(memberInfo.name);
+		$(moduleID).find("#email").val(memberInfo.email);
+	});
+	
+	$(moduleID + " input, textarea").jqBootstrapValidation({
+		preventSubmit: true,
+		submitError: function($form, event, errors) {
+            
+        },
+        submitSuccess: function($form, event) {
+        	event.preventDefault();
+        	
+        	if (!confirm("회원정보를 변경하시겠습니까?")) {
+        		return false;
+        	}
+        	
+        	var params = {
+        		name : $form.find('#name').val(),
+        		email : $form.find('#email').val()
+        	};
+        	
+        	$.ajax({
+        		url: jsContextPath + "/member",
+        		type: "PUT",
+                data: JSON.stringify(params),
+                dataType:'json',
+                contentType : 'application/json; charset=UTF-8',
+                cache: false,
+                success: function(resultData) {
+                    
+                },
+                error	: function(x, e) {
+                	// server side validation errors
+                	if (x.status == 400) {
+                		$.each(x.responseJSON.errors, function(idx, error) {
+                			alert(error.defaultMessage);
+                		});
+                	} else {
+                		alert("오류가 발생되었습니다.");
+                	}
+				}
+            });
+        }
+	});
 	
 	return {
 		

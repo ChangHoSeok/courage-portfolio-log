@@ -5,7 +5,6 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -27,6 +26,10 @@ import kr.pe.courage.common.CommonVO;
  */
 public class MemberVO extends CommonVO {
 	private String sno;
+	
+	@NotEmpty(
+			message = "이름은 필수 항목 입니다.",
+			groups = {MemberUpdateValidate.class})
 	private String name;
 	
 	@NotEmpty(
@@ -38,6 +41,14 @@ public class MemberVO extends CommonVO {
 			groups = {MemberSignInValidate.class})
 	@JsonInclude(Include.NON_EMPTY)
 	private String password;
+	
+	@NotEmpty(
+			message = "Email은 필수 항목 입니다.",
+			groups = {MemberUpdateValidate.class})
+	@Pattern(
+			regexp = "^([A-Za-z0-9_\\-\\.\\'])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,6})$",
+			message = "Email형식이 맞지 않습니다.",
+			groups = {MemberUpdateValidate.class})
 	private String email;
 	private String gravatarUrl;
 
