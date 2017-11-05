@@ -73,4 +73,42 @@ public class MemberService {
 		
 		return resultVO;
 	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 사용자 정보 조회
+	 * </pre>
+	 * 
+	 * @Date	: 2017. 11. 5.
+	 * @Method Name : getMember
+	 * @param memberVO
+	 * @return
+	 * @throws MemberNotFoundException
+	 */
+	public MemberVO getMember(MemberVO memberVO) throws MemberNotFoundException {
+		MemberVO resultVO = memberRepository.selectMember(memberVO);
+		
+		// 사용자 정보가 존재하지 않음은 패스워드가 틀림을 의미 한다.
+		if (resultVO == null) {
+			throw new MemberNotFoundException("사용자 정보 미존재 [sno : " + memberVO.getSno() + "]");
+		}
+		
+		// Gravatar URL 설정
+		resultVO.setGravatarUrl(gravatarGenerator.getGravatarURL(resultVO.getEmail()));
+		
+		return resultVO;
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 사용자 정보 수정
+	 * </pre>
+	 * 
+	 * @Date	: 2017. 11. 5.
+	 * @Method Name : updateMember
+	 * @param memberVO
+	 */
+	public void updateMember(MemberVO memberVO) {
+		memberRepository.updateMember(memberVO);
+	}
 }

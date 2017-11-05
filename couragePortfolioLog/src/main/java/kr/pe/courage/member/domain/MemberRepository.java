@@ -34,6 +34,18 @@ public interface MemberRepository {
 	
 	/**
 	 * <pre>
+	 * 1. 개요 : 사용자 정보 조회
+	 * </pre>
+	 * 
+	 * @Date	: 2017. 11. 5.
+	 * @Method Name : selectMember
+	 * @param memberVO
+	 * @return
+	 */
+	public MemberVO selectMember(MemberVO memberVO);
+	
+	/**
+	 * <pre>
 	 * 1. 개요 : 패스워드 암호화를 위한 SALT 조회
 	 * </pre>
 	 * 
@@ -55,4 +67,15 @@ public interface MemberRepository {
 	 * @return
 	 */
 	public int selectMemberCount();
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 사용자 정보 수정
+	 * </pre>
+	 * 
+	 * @Date	: 2017. 11. 5.
+	 * @Method Name : updateMember
+	 * @param memberVO
+	 */
+	public void updateMember(MemberVO memberVO);
 }

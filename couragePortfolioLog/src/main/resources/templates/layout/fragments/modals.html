@@ -303,7 +303,17 @@
 		                            </div>
 		                        </div>
 		                    </form>
-                        </div>
+		                    
+							<div id="saveSuccess" class="alert alert-success alert-dismissable" style="display: none;">
+								<a href="#" class="close" aria-label="close" onclick="$(this).parent().fadeOut();">×</a>
+								<strong>저장 완료</strong> 사용자 정보가 정상적으로 저장되었습니다.
+							</div>
+
+							<div id="saveError" class="alert alert-danger alert-dismissable" style="display: none;">
+								<a href="#" class="close" aria-label="close" onclick="$(this).parent().fadeOut();">×</a>
+								<strong>저장 실패</strong> <span id="errorDesc"></span>
+							</div>
+						</div>
                     </div>
                 </div>
             </div>

@@ -167,8 +167,8 @@ var profile = (function() {
                 dataType:'json',
                 contentType : 'application/json; charset=UTF-8',
                 cache: false,
-                success: function(resultData) {
-                    
+                success: function() {
+                    $(moduleID).find("#saveSuccess").fadeIn();
                 },
                 error	: function(x, e) {
                 	// server side validation errors
@@ -177,7 +177,8 @@ var profile = (function() {
                 			alert(error.defaultMessage);
                 		});
                 	} else {
-                		alert("오류가 발생되었습니다.");
+                		$(moduleID).find("#errorDesc").html("오류가 발생되었습니다.");ㄴ
+                		$(moduleID).find("#saveError").fadeIn();
                 	}
 				}
             });

@@ -75,10 +75,7 @@ public class MemberRestController {
 			resultMap.put("isLogin", Boolean.TRUE);
 			resultMap.put("memberInfo", loginMember);
 			
-			session.setAttribute(courageProperties.getSession().getKeys().getObject(), loginMember);
-			session.setAttribute(courageProperties.getSession().getKeys().getName(), loginMember.getName());
-			session.setAttribute(courageProperties.getSession().getKeys().getEmail(), loginMember.getEmail());
-			session.setAttribute(courageProperties.getSession().getKeys().getGravatarURL(), loginMember.getGravatarUrl());
+			setSessionAttribute(session, loginMember);
 		} catch (MemberInvalidException e) {
 			resultMap.put("isLogin", Boolean.FALSE);
 		} catch (MemberNotFoundException e) {
@@ -154,5 +151,27 @@ public class MemberRestController {
 	public void updateMember(HttpSession session,
 		@Validated(MemberUpdateValidate.class) @RequestBody MemberVO memberVO) throws Exception {
 		
+		MemberVO loginInfo = (MemberVO) session.getAttribute(courageProperties.getSession().getKeys().getObject());
+		memberVO.setSno(loginInfo.getSno());
+		
+		memberService.updateMember(memberVO);
+		setSessionAttribute(session, memberService.getMember(memberVO));
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 세션 사용자 정보 설정
+	 * </pre>
+	 * 
+	 * @Date	: 2017. 11. 5.
+	 * @Method Name : setSessionAttribute
+	 * @param session
+	 * @param memberVO
+	 */
+	private void setSessionAttribute(HttpSession session, MemberVO memberVO) {
+		session.setAttribute(courageProperties.getSession().getKeys().getObject(), memberVO);
+		session.setAttribute(courageProperties.getSession().getKeys().getName(), memberVO.getName());
+		session.setAttribute(courageProperties.getSession().getKeys().getEmail(), memberVO.getEmail());
+		session.setAttribute(courageProperties.getSession().getKeys().getGravatarURL(), memberVO.getGravatarUrl());
 	}
 }

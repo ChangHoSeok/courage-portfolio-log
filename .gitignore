@@ -15,6 +15,7 @@ local.properties
 target/
 .externalToolBuilders/
 .loadpath
+.tern-project
 
 #################
 ## Java
