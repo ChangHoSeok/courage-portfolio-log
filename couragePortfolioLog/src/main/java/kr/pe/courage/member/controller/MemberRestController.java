@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.pe.courage.exception.SessionExpiredException;
+import kr.pe.courage.member.domain.MemberChangePasswordValidate;
 import kr.pe.courage.member.domain.MemberInvalidException;
 import kr.pe.courage.member.domain.MemberNotFoundException;
 import kr.pe.courage.member.domain.MemberSignInValidate;
@@ -156,6 +157,28 @@ public class MemberRestController {
 		
 		memberService.updateMember(memberVO);
 		setSessionAttribute(session, memberService.getMember(memberVO));
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 회원 비밀번호 변경
+	 * </pre>
+	 * 
+	 * @Date	: 2017. 11. 6.
+	 * @Method Name : changePassword
+	 * @param memberVO
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/password",
+			method = RequestMethod.PUT,
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public @ResponseBody Map<String, Object> changePassword(
+			@Validated(MemberChangePasswordValidate.class) @RequestBody MemberVO memberVO) throws Exception {
+		
+		return null;
 	}
 	
 	/**

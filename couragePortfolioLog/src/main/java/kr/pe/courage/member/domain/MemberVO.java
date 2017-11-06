@@ -34,13 +34,23 @@ public class MemberVO extends CommonVO {
 	
 	@NotEmpty(
 			message = "비밀번호는 필수 항목 입니다.",
-			groups = {MemberSignInValidate.class})
+			groups = {MemberSignInValidate.class, MemberChangePasswordValidate.class})
 	@Pattern(
 			regexp = "((?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])).{8,20}",
 			message = "숫자, 영문자, 특수문자 조합 8~20자리",
-			groups = {MemberSignInValidate.class})
+			groups = {MemberSignInValidate.class, MemberChangePasswordValidate.class})
 	@JsonInclude(Include.NON_EMPTY)
 	private String password;
+	
+	@NotEmpty(
+			message = "변경 비밀번호는 필수 항목 입니다.",
+			groups = {MemberChangePasswordValidate.class})
+	@Pattern(
+			regexp = "((?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])).{8,20}",
+			message = "숫자, 영문자, 특수문자 조합 8~20자리",
+			groups = {MemberChangePasswordValidate.class})
+	@JsonInclude(Include.NON_EMPTY)
+	private String newPassword;
 	
 	@NotEmpty(
 			message = "Email은 필수 항목 입니다.",
@@ -74,6 +84,14 @@ public class MemberVO extends CommonVO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
 	}
 
 	public String getEmail() {
