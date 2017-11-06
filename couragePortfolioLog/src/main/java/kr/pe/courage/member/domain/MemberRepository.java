@@ -70,6 +70,18 @@ public interface MemberRepository {
 	
 	/**
 	 * <pre>
+	 * 1. 개요 : 사용자 패스워드 검증을 위한 조회
+	 * </pre>
+	 * 
+	 * @Date	: 2017. 11. 6.
+	 * @Method Name : selectMemberPassword
+	 * @param memberVO
+	 * @return
+	 */
+	public int selectMemberPassword(MemberVO memberVO);
+	
+	/**
+	 * <pre>
 	 * 1. 개요 : 사용자 정보 수정
 	 * </pre>
 	 * 
@@ -78,4 +90,15 @@ public interface MemberRepository {
 	 * @param memberVO
 	 */
 	public void updateMember(MemberVO memberVO);
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 사용자 패스워드 변경
+	 * </pre>
+	 * 
+	 * @Date	: 2017. 11. 6.
+	 * @Method Name : updateMemberPassword
+	 * @param memberVO
+	 */
+	public void updateMemberPassword(MemberVO memberVO);
 }

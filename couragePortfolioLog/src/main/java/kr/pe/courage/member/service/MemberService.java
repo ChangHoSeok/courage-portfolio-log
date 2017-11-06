@@ -1,14 +1,17 @@
 package kr.pe.courage.member.service;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.pe.courage.common.link.gravatar.GravatarGenerator;
 import kr.pe.courage.common.util.encrypt.SHAEncryptString;
-import kr.pe.courage.member.domain.MemberInvalidException;
-import kr.pe.courage.member.domain.MemberNotFoundException;
 import kr.pe.courage.member.domain.MemberRepository;
 import kr.pe.courage.member.domain.MemberVO;
+import kr.pe.courage.member.exception.MemberAuthenticationException;
+import kr.pe.courage.member.exception.MemberInvalidException;
+import kr.pe.courage.member.exception.MemberNotFoundException;
 
 /**
  * <pre>
@@ -56,20 +59,20 @@ public class MemberService {
 		int memberCnt = memberRepository.selectMemberCount();
 		if (memberCnt != 1) {
 			throw new MemberInvalidException("사용자 정보 갯수 : " + memberCnt);
-		} else {
-			String salt = memberRepository.selectMemberSalt();
-			memberVO.setPassword(SHAEncryptString.encSHA512(memberVO.getPassword(), salt));
-			
-			resultVO = memberRepository.selectMemberForLogin(memberVO);
-			
-			// 사용자 정보가 존재하지 않음은 패스워드가 틀림을 의미 한다.
-			if (resultVO == null) {
-				throw new MemberNotFoundException("패스워드 인증 실패");
-			}
-			
-			// Gravatar URL 설정
-			resultVO.setGravatarUrl(gravatarGenerator.getGravatarURL(resultVO.getEmail()));
 		}
+		
+		String salt = memberRepository.selectMemberSalt();
+		memberVO.setPassword(SHAEncryptString.encSHA512(memberVO.getPassword(), salt));
+		
+		resultVO = memberRepository.selectMemberForLogin(memberVO);
+		
+		// 사용자 정보가 존재하지 않음은 패스워드가 틀림을 의미 한다.
+		if (resultVO == null) {
+			throw new MemberNotFoundException("패스워드 인증 실패");
+		}
+		
+		// Gravatar URL 설정
+		resultVO.setGravatarUrl(gravatarGenerator.getGravatarURL(resultVO.getEmail()));
 		
 		return resultVO;
 	}
@@ -110,5 +113,36 @@ public class MemberService {
 	 */
 	public void updateMember(MemberVO memberVO) {
 		memberRepository.updateMember(memberVO);
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 사용자 패스워드 변경
+	 * </pre>
+	 * 
+	 * @Date	: 2017. 11. 6.
+	 * @Method Name : updateMemberPassword
+	 * @param memberVO
+	 * @throws MemberAuthenticationException
+	 */
+	public void updateMemberPassword(MemberVO memberVO) throws MemberAuthenticationException {
+		System.out.println(memberVO.getPassword());
+		System.out.println(SHAEncryptString.encSHA512("test1234!", "5e57d5ce-d43f-4459-b7dd-8a00af373c1e"));
+		
+		// 현재 비밀번호 검증
+		String salt = memberRepository.selectMemberSalt();
+		memberVO.setPassword(SHAEncryptString.encSHA512(memberVO.getPassword(), salt));
+		
+		if (memberRepository.selectMemberPassword(memberVO) <= 0) {
+			throw new MemberAuthenticationException();
+		}
+		
+		// 신규 패스워드 생성
+		salt = UUID.randomUUID().toString();
+		String password = SHAEncryptString.encSHA512(memberVO.getNewPassword(), salt);
+		
+		memberVO.setSalt(salt);
+		memberVO.setPassword(password);
+		memberRepository.updateMemberPassword(memberVO);
 	}
 }

@@ -1,4 +1,4 @@
-package kr.pe.courage.member.domain;
+package kr.pe.courage.member.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

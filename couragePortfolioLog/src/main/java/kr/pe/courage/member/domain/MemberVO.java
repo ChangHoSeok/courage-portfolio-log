@@ -32,6 +32,9 @@ public class MemberVO extends CommonVO {
 			groups = {MemberUpdateValidate.class})
 	private String name;
 	
+	@JsonInclude(Include.NON_EMPTY)
+	private String salt;
+	
 	@NotEmpty(
 			message = "비밀번호는 필수 항목 입니다.",
 			groups = {MemberSignInValidate.class, MemberChangePasswordValidate.class})
@@ -76,6 +79,14 @@ public class MemberVO extends CommonVO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 	public String getPassword() {

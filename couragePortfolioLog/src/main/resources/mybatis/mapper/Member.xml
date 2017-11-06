@@ -27,10 +27,24 @@
 		  FROM TB_MEMBER
 	</select>
 	
+	<select id="selectMemberPassword" parameterType="MemberVO" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		  FROM TB_MEMBER
+		 WHERE SNO = #{sno}
+		   AND PASSWORD = #{password}
+	</select>
+	
 	<update id="updateMember" parameterType="MemberVO">
 		UPDATE TB_MEMBER SET
 			NAME = #{name},
 			EMAIL = #{email}
+		 WHERE SNO = #{sno}
+	</update>
+	
+	<update id="updateMemberPassword" parameterType="MemberVO">
+		UPDATE TB_MEMBER SET
+			PASSWORD = #{password},
+			SALT = #{salt}
 		 WHERE SNO = #{sno}
 	</update>
 </mapper>

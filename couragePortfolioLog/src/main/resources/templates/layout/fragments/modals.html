@@ -297,9 +297,9 @@
 		                        <br />
 		                        <div class="row">
 		                            <div class="form-group col-xs-12">
+		                                <button id="btnSubmit" type="button" class="btn btn-default hidden-xs" data-dismiss="modal"><i class="fa fa-times"></i> 닫기</button>&nbsp;
 		                                <button id="changePassword" type="button" class="btn btn-info" data-toggle="modal" data-target="#changePasswordModal">비밀번호 변경</button>&nbsp;
-		                                <button id="save" type="submit" class="btn btn-success">저장</button>&nbsp;
-		                                <button id="btnSubmit" type="button" class="btn btn-default hidden-xs" data-dismiss="modal"><i class="fa fa-times"></i> 닫기</button>
+		                                <button id="save" type="submit" class="btn btn-success">저장</button>
 		                            </div>
 		                        </div>
 		                    </form>
@@ -357,10 +357,6 @@
 							<div class="form-group col-xs-12 floating-label-form-group controls">
 								<label for="newPasswordConfirm">변경 비밀번호 확인</label>
 								<input type="password" class="form-control" placeholder="변경 비밀번호 확인" id="newPasswordConfirm"
-									required="required"
-									data-validation-required-message="비밀번호를 입력하세요."
-									data-validation-regex-regex="((?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])).{8,20}"
-									data-validation-regex-message="숫자, 영문자, 특수문자 조합 8~20자리"
 									data-validation-match-match="newPassword"
 									data-validation-match-message="비밀번호가 일치하지 않습니다." />
 								<p class="help-block text-danger"></p>

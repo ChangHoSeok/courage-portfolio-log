@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.pe.courage.exception.SessionExpiredException;
 import kr.pe.courage.member.domain.MemberChangePasswordValidate;
-import kr.pe.courage.member.domain.MemberInvalidException;
-import kr.pe.courage.member.domain.MemberNotFoundException;
 import kr.pe.courage.member.domain.MemberSignInValidate;
 import kr.pe.courage.member.domain.MemberUpdateValidate;
 import kr.pe.courage.member.domain.MemberVO;
+import kr.pe.courage.member.exception.MemberInvalidException;
+import kr.pe.courage.member.exception.MemberNotFoundException;
 import kr.pe.courage.member.service.MemberService;
 import kr.pe.courage.properties.CourageProperties;
 
@@ -172,13 +172,15 @@ public class MemberRestController {
 	 */
 	@RequestMapping(value = "/password",
 			method = RequestMethod.PUT,
-			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public @ResponseBody Map<String, Object> changePassword(
+	public void changePassword(HttpSession session,
 			@Validated(MemberChangePasswordValidate.class) @RequestBody MemberVO memberVO) throws Exception {
 		
-		return null;
+		MemberVO loginInfo = (MemberVO) session.getAttribute(courageProperties.getSession().getKeys().getObject());
+		memberVO.setSno(loginInfo.getSno());
+		
+		memberService.updateMemberPassword(memberVO);
 	}
 	
 	/**

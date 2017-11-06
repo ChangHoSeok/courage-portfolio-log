@@ -146,8 +146,8 @@ var profile = (function() {
 	
 	$(moduleID).on('show.bs.modal', function () {
 		var memberInfo = member.getMember();
-		$(moduleID).find("#name").val(memberInfo.name);
-		$(moduleID).find("#email").val(memberInfo.email);
+		$(moduleID).find("#name").val(memberInfo.name).trigger("propertychange");
+		$(moduleID).find("#email").val(memberInfo.email).trigger("propertychange");
 	});
 	
 	$(moduleID + " input, textarea").jqBootstrapValidation({
@@ -230,7 +230,8 @@ var changePassword = (function() {
                 contentType : 'application/json; charset=UTF-8',
                 cache: false,
                 success: function(resultData) {
-                    
+                    alert("비밀번호가 변경되었습니다.");
+                    $(moduleID).modal("toggle");
                 },
                 error	: function(x, e) {
                 	// server side validation errors
