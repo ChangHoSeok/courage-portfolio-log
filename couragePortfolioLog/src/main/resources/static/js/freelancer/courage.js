@@ -3,17 +3,6 @@
  * Courage 공통 Javascript
  */
 
-(function($) {
-	"use strict";
-	
-	/**
-	 * bootstrap multiple modal 사용시 scroll bug fix
-	 */
-	$(document).on('hidden.bs.modal', '.modal', function () {
-	    $('.modal:visible').length && $(document.body).addClass('modal-open');
-	});
-})(jQuery);
-
 /**
  * 사용자 인증
  */
@@ -269,4 +258,58 @@ var utils = (function() {
 	}
 })();
 
-signIn.init();
+var setup = (function() {
+	var moduleID = "";
+	var isSetup = false;
+	
+	$(function() {
+		getSetupInfo();
+	});
+	
+	function getSetupInfo() {
+		var setupInfo = undefined;
+		
+		$.ajax({
+    		url: jsContextPath + "/setup",
+    		type: "GET",
+            dataType:'json',
+            contentType : 'application/json; charset=UTF-8',
+            cache: false,
+            success: function(resultData) {
+            	if (resultData) {
+            		setupInfo = resultData.setupInfo;
+            		isSetup = true;
+            	}
+            },
+            error: function(x, e) {
+            	if (x.status == 404) {
+            		isSetup = false;
+            	} else {
+            		alert("오류가 발생되었습니다.");
+            	}
+            },
+            async: false
+        });
+		
+		return setupInfo;
+	}
+	
+	return {
+		getSetupInfo : getSetupInfo,
+		isSetup : isSetup
+	}
+})();
+
+(function($) {
+	"use strict";
+	
+	/**
+	 * bootstrap multiple modal 사용시 scroll bug fix
+	 */
+	$(document).on('hidden.bs.modal', '.modal', function () {
+	    $('.modal:visible').length && $(document.body).addClass('modal-open');
+	});
+	
+	signIn.init();
+	console.info(setup.isSetup);
+})(jQuery);
