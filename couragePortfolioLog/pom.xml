@@ -98,6 +98,12 @@
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 		
+		<dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-devtools</artifactId>
+	        <optional>true</optional>
+	    </dependency>
+    	
 		<!-- attribute level json comparisons -->
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>

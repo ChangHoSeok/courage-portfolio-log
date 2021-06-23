@@ -9,10 +9,13 @@ spring:
   
   datasource:
     driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:sqlite:C:/dev/courage-portfolio.db
+    url: jdbc:log4jdbc:sqlite:C:/Users/schkk/git/courage-portfolio-log/database/courage-portfolio.db
     username: 
     password: 
 
+  devtools:
+    livereload:
+      enabled: true
 mybatis:
   config-location: classpath:/mybatis/config/mybatis-config.xml
   
@@ -40,7 +43,7 @@ courage:
   web:
     title: Courage PortfoLog
   storage:
-    savePath: C:/dev/kaki/attachments
+    savePath: C:/dev/courage/attachments
     whiteList: jpg, jpeg, png, gif
   resource:
     jsExt: js

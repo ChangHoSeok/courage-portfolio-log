@@ -31,7 +31,7 @@ public class WebLoggingFilterConfig {
 		WebLoggingFilter webLoggingFilter = new WebLoggingFilter();
 		Map<String, String> initParams = new HashMap<>();
 		
-		initParams.put("excludeStartWithURI", "/images/, /css/, /webjars/, /js/");
+		initParams.put("excludeStartWithURI", "/images/, /css/, /webjars/, /js/, /favicon.ico");
 //		initParams.put("os-logging", "true"); // default false
 //		initParams.put("mem-logging", "true"); // default false
 //		initParams.put("param-logging", "true"); // default true

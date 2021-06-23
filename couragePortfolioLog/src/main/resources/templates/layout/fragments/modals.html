@@ -274,7 +274,7 @@
                             <h2>Profile</h2>
                             <hr class="star-primary" />
                             
-                            <form th:action="@{/member}" name="profileForm" id="profileForm" novalidate="novalidate">
+                            <form th:action="@{/member}" name="profileForm" id="profileForm" class="modalForm" novalidate="novalidate">
 		                        <div class="row control-group">
 		                            <div class="form-group col-xs-12 floating-label-form-group controls">
 		                                <label for="name">Name</label>
@@ -297,9 +297,9 @@
 		                        <br />
 		                        <div class="row">
 		                            <div class="form-group col-xs-12">
-		                                <button id="btnSubmit" type="button" class="btn btn-default hidden-xs" data-dismiss="modal"><i class="fa fa-times"></i> 닫기</button>&nbsp;
 		                                <button id="changePassword" type="button" class="btn btn-info" data-toggle="modal" data-target="#changePasswordModal">비밀번호 변경</button>&nbsp;
 		                                <button id="save" type="submit" class="btn btn-success">저장</button>
+		                                <button id="btnSubmit" type="button" class="btn btn-default hidden-xs" data-dismiss="modal"><i class="fa fa-times"></i> 닫기</button>&nbsp;
 		                            </div>
 		                        </div>
 		                    </form>
@@ -369,6 +369,69 @@
 		            </div>
 				</form>
 	        </div>
+        </div>
+    </div>
+    
+    <!-- setup Modal -->
+	<div class="portfolio-modal modal fade" id="setupModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Setup</h2>
+                            <hr class="star-primary" />
+                            
+                            <form th:action="@{/setup}" name="setupForm" id="setupForm" class="modalForm" novalidate="novalidate">
+		                        <div class="row control-group">
+		                            <div class="form-group col-xs-12 floating-label-form-group controls">
+		                                <label for="title">Title</label>
+		                                <input type="text" name="title" class="form-control" placeholder="Title" id="title"
+		                                	required="required"
+		                                	data-validation-required-message="제목을 입력하세요." />
+		                                <p class="help-block text-danger"></p>
+		                            </div>
+		                        </div>
+		                        
+		                        <div class="row control-group">
+		                            <div class="form-group col-xs-12 floating-label-form-group controls">
+		                                <label for="subTitle">SubTitle</label>
+		                                <input type="text" name="subTitle" class="form-control" placeholder="SubTitle" id="subTitle"
+		                                	required="required"
+		                                	data-validation-required-message="부제목을 입력하세요." />
+		                                <p class="help-block text-danger"></p>
+		                            </div>
+		                        </div>
+		                        
+		                        <br />
+		                        
+		                        <div class="row">
+		                            <div class="form-group col-xs-12">
+		                                <button id="save" type="submit" class="btn btn-success">저장</button>
+		                                <button id="btnSubmit" type="button" class="btn btn-default hidden-xs" data-dismiss="modal"><i class="fa fa-times"></i> 닫기</button>&nbsp;
+		                            </div>
+		                        </div>
+		                    </form>
+		                    
+							<div id="saveSuccess" class="alert alert-success alert-dismissable" style="display: none;">
+								<a href="#" class="close" aria-label="close" onclick="$(this).parent().fadeOut();">×</a>
+								<strong>저장 완료</strong> 설정 정보가 정상적으로 저장되었습니다.
+							</div>
+
+							<div id="saveError" class="alert alert-danger alert-dismissable" style="display: none;">
+								<a href="#" class="close" aria-label="close" onclick="$(this).parent().fadeOut();">×</a>
+								<strong>저장 실패</strong> <span id="errorDesc"></span>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     </th:block>
