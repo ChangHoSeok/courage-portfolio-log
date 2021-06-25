@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko"
+	xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+
+<th:block th:fragment="resourceCSS" th:with="cssExt=${@environment.getProperty('courage.resource.cssExt')}">
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="Courage Portfolio Blog" />
+	<meta name="author" content="" />
+	
+	<!-- simple-datatables CSS -->
+	<link th:href="@{/css/simple-datatables/simple-datatables-3.0.2.{cssExt}?v=20210625(cssExt=${cssExt})}" href="css/simple-datatables/simple-datatables-3.0.2.css" rel="stylesheet" />
+	<!-- Theme CSS -->
+	<link th:href="@{/css/admin/styles.{cssExt}?v=20210625(cssExt=${cssExt})}" href="css/admin/style.css" rel="stylesheet" />
+	<!-- font-awesome -->
+    <script th:src="@{/webjars/font-awesome/5.15.3/js/all.min.js?v=20210625}" src="vendor/font-awesome/5.15.3/all.min.js" crossorigin="anonymous"></script>
+	<!-- Custom Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+	
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	    <script th:src="@{/webjars/html5shiv/3.7.0/html5shiv.min.js?v=20210625}" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	    <script th:src="@{/webjars/respond/1.4.2/dest/respond.min.js?v=20210625}" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</th:block>
+
+<th:block th:fragment="resourceJS" th:with="jsExt=${@environment.getProperty('courage.resource.jsExt')}">
+	<!-- jQuery -->
+    <script th:src="@{/webjars/jquery/1.12.4/jquery.min.js?v=20210625}" src="vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script th:src="@{/webjars/bootstrap/5.0.1/js/bootstrap.bundle.min.js?v=20210625}" src="vendor/bootstrap/5.0.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script th:src="@{/js/simple-datatables/simple-datatables-3.0.2.{jsExt}?v=20210625(jsExt=${jsExt})}" src="vendor/simple-datatables/simple-datatables-3.0.2.js"></script>
+
+	<script th:src="@{/js/admin/admin.{jsExt}?v=20210625(jsExt=${jsExt})}" src="js/admin.min.js"></script>
+
+</th:block>
+</head>
+</html>
