@@ -14,16 +14,23 @@
 </script>
 </head>
 
-<body class="sb-nav-fixed">
-	
-	<nav th:replace="layout/fragments/adminTopNavigation :: navigationFragment"></nav>
-	
-	<div id="layoutSidenav">
-		<div th:replace="layout/fragments/adminSideNavigation :: navigationFragment"></div>
-		<div layout:fragment="contents"></div>
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<div th:replace="layout/fragments/adminSideNavigation :: navigationFragment"></div>
+			
+			<div th:replace="layout/fragments/adminTopNavigation :: navigationFragment"></div>
+			
+			<div layout:fragment="contents"></div>
+			
+			<footer th:replace="layout/fragments/adminFooter :: footerFragment"></footer>
+		</div>
 	</div>
 	
 	<th:block th:replace="layout/fragments/adminResourceConfig :: resourceJS"></th:block>
+	<script th:inline="javascript">
+		$(document).ajaxStart(NProgress.start).ajaxStop(NProgress.done);
+	</script>
 	<th:block layout:fragment="jsResource"></th:block>
 </body>
 </html>

@@ -24,20 +24,20 @@ import kr.pe.courage.properties.CourageProperties;
 @Component("gravatarGenerator")
 public class GravatarGenerator {
 	@Autowired
-	private CourageProperties courageProperties;
+	private CourageProperties courageProp;
 	
 	public String getGravatarURL(String email) {
-		int size = Integer.parseInt(courageProperties.getLink().getGravatar().getSize());
+		int size = Integer.parseInt(courageProp.getProp("link.gravatar.size"));
 		
 		return this.getGravatarURL(email, size);
 	}
 	
 	public String getGravatarURL(String email, int size) {
-		return this.getGravatarURL(email, size, courageProperties.getLink().getGravatar().getDefaultImg());
+		return this.getGravatarURL(email, size, courageProp.getProp("link.gravatar.defaultImg"));
 	}
 	
 	public String getGravatarURL(String email, int size, String defaultImg) {
-		String preURL = courageProperties.getLink().getGravatar().getUrl();
+		String preURL = courageProp.getProp("link.gravatar.url");
 		String resultStr = "";
 		String params = "?";
 		

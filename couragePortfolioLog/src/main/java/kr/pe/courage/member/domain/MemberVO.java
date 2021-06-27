@@ -8,7 +8,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import kr.pe.courage.common.CommonVO;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * <pre>
@@ -24,7 +26,10 @@ import kr.pe.courage.common.CommonVO;
  * 사용자 정보
  * </pre>
  */
-public class MemberVO extends CommonVO {
+@Setter
+@Getter
+@ToString
+public class MemberVO {
 	private String sno;
 	
 	@NotEmpty(
@@ -64,60 +69,4 @@ public class MemberVO extends CommonVO {
 			groups = {MemberUpdateValidate.class})
 	private String email;
 	private String gravatarUrl;
-
-	public String getSno() {
-		return sno;
-	}
-
-	public void setSno(String sno) {
-		this.sno = sno;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getNewPassword() {
-		return newPassword;
-	}
-
-	public void setNewPassword(String newPassword) {
-		this.newPassword = newPassword;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getGravatarUrl() {
-		return gravatarUrl;
-	}
-
-	public void setGravatarUrl(String gravatarUrl) {
-		this.gravatarUrl = gravatarUrl;
-	}
 }

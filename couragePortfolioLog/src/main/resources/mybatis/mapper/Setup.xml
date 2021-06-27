@@ -20,4 +20,32 @@
 		SELECT COUNT(*)
 		  FROM TB_SETUP
 	</select>
+	
+	<insert id="insertSetup" parameterType="SetupVO" useGeneratedKeys="true" keyProperty="pbSno" keyColumn="PB_SNO">
+		INSERT INTO TB_SETUP (
+			TITLE, SUB_TITLE, MAIN_PHOTO_URL, DESC,
+			ABOUT_ME, GITHUB, FACEBOOK, TWITTER,
+			GOOGLE_PLUS, LINKED_IN, COPYLIGHT
+		) VALUES (
+			#{title}, #{subTitle}, #{mainPhotoUrl}, #{desc},
+			#{aboutMe}, #{github}, #{facebook}, #{twitter},
+			#{googlePlus}, #{linkedIn}, #{copylight}
+		)
+	</insert>
+	
+	<update id="updateSetup" parameterType="SetupVO">
+		UPDATE TB_SETUP SET
+			TITLE = #{title},
+			SUB_TITLE = #{subTitle},
+			MAIN_PHOTO_URL = #{mainPhotoUrl},
+			DESC = #{desc},
+			ABOUT_ME = #{aboutMe},
+			GITHUB = #{github},
+			FACEBOOK = #{facebook},
+			TWITTER = #{twitter},
+			GOOGLE_PLUS = #{googlePlus},
+			LINKED_IN = #{linkedIn},
+			COPYLIGHT = #{copylight}
+		 WHERE PB_SNO = #{pbSno}
+	</update>
 </mapper>

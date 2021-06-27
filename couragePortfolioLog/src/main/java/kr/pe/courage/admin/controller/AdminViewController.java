@@ -7,8 +7,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminViewController {
 	
-	@RequestMapping("/dashboard")
+	@RequestMapping("/dashboard.html")
 	public String viewDashboard() throws Exception {
 		return "admin/dashboard";
+	}
+	
+	@RequestMapping("/portfolio.html")
+	public String viewPortfolio() throws Exception {
+		return "admin/portfolio";
+	}
+	
+	@RequestMapping("/contact.html")
+	public String viewContact() throws Exception {
+		return "admin/contact";
+	}
+	
+	@RequestMapping("/memo.html")
+	public String viewMemo() throws Exception {
+		return "admin/memo";
+	}
+	
+	@RequestMapping("/setup.html")
+	public String viewSetup() throws Exception {
+		return "admin/setup";
 	}
 }

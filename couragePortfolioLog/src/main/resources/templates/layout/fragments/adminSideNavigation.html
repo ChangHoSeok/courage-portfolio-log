@@ -2,75 +2,65 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head></head>
 <body>
-    <!-- Top Navigation -->
-    <div th:fragment="navigationFragment" id="layoutSidenav_nav">
-	    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-	        <div class="sb-sidenav-menu">
-	            <div class="nav">
-	                <div class="sb-sidenav-menu-heading">Core</div>
-	                <a class="nav-link" href="index.html">
-	                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-	                    Dashboard
-	                </a>
-	                <div class="sb-sidenav-menu-heading">Interface</div>
-	                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-	                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-	                    Layouts
-	                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-	                </a>
-	                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-	                    <nav class="sb-sidenav-menu-nested nav">
-	                        <a class="nav-link" href="layout-static.html">Static Navigation</a>
-	                        <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-	                    </nav>
-	                </div>
-	                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-	                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-	                    Pages
-	                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-	                </a>
-	                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-	                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-	                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-	                            Authentication
-	                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-	                        </a>
-	                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-	                            <nav class="sb-sidenav-menu-nested nav">
-	                                <a class="nav-link" href="login.html">Login</a>
-	                                <a class="nav-link" href="register.html">Register</a>
-	                                <a class="nav-link" href="password.html">Forgot Password</a>
-	                            </nav>
-	                        </div>
-	                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-	                            Error
-	                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-	                        </a>
-	                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-	                            <nav class="sb-sidenav-menu-nested nav">
-	                                <a class="nav-link" href="401.html">401 Page</a>
-	                                <a class="nav-link" href="404.html">404 Page</a>
-	                                <a class="nav-link" href="500.html">500 Page</a>
-	                            </nav>
-	                        </div>
-	                    </nav>
-	                </div>
-	                <div class="sb-sidenav-menu-heading">Addons</div>
-	                <a class="nav-link" href="charts.html">
-	                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-	                    Charts
-	                </a>
-	                <a class="nav-link" href="tables.html">
-	                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-	                    Tables
-	                </a>
-	            </div>
-	        </div>
-	        <div class="sb-sidenav-footer">
-	            <div class="small">Logged in as:</div>
-	            Start Bootstrap
-	        </div>
-	    </nav>
+	<div th:fragment="navigationFragment" class="col-md-3 left_col">
+		<div class="left_col scroll-view">
+			<div class="navbar nav_title" style="border: 0;">
+				<a href="/admin/dashboard.html" class="site_title">
+					<i class="fa fa-desktop"></i>
+					<span th:text="${@environment.getProperty('courage.admin.title')}">Gentelella Alela!</span>
+				</a>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<!-- menu profile quick info -->
+			<div class="profile clearfix">
+				<div class="profile_pic" th:with="keyUserImg=${@environment.getProperty('courage.session.keys.gravatarURL')}">
+					<img alt="avatar" th:src="@{${session[{keyUserImg}]}?:'/images/avatar/anonymous.png'}" class="img-circle profile_img" />
+				</div>
+				<div class="profile_info" th:with="keyUserName=${@environment.getProperty('courage.session.keys.name')}">
+					<span>Welcome,</span>
+					<h2 th:text="${session[{keyUserName}]}">John Doe</h2>
+				</div>
+			</div>
+			<!-- /menu profile quick info -->
+
+			<br />
+
+			<!-- sidebar menu -->
+			<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+				<div class="menu_section">
+					<ul class="nav side-menu">
+						<li><a><i class="fa fa-edit"></i> Board <span class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/admin/portfolio.html}">Portfolio</a></li>
+								<li><a th:href="@{/admin/contact.html}">Contact</a></li>
+								<li><a th:href="@{/admin/memo.html}">Memo</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav side-menu">
+						<li>
+							<a><i class="fa fa-gear"></i> Setup <span class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/admin/setup.html}">Setup</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /sidebar menu -->
+
+			<!-- /menu footer buttons -->
+			<div class="sidebar-footer hidden-small">
+				<a data-toggle="tooltip" data-placement="top" title="Settings"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+				</a> <a data-toggle="tooltip" data-placement="top" title="FullScreen"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+				</a> <a data-toggle="tooltip" data-placement="top" title="Lock"> <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+				</a> <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html"> <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+				</a>
+			</div>
+			<!-- /menu footer buttons -->
+		</div>
 	</div>
 </body>
 </html>

@@ -47,7 +47,7 @@ public class MemberRestController {
 	private MemberService memberService;
 	
 	@Autowired
-	private CourageProperties courageProperties;
+	private CourageProperties courageProp;
 	
 	/**
 	 * <pre>
@@ -99,10 +99,10 @@ public class MemberRestController {
 	@RequestMapping(value = "/signout",
 			method = RequestMethod.POST)
 	public void signOut(HttpSession session) throws Exception {
-		session.removeAttribute(courageProperties.getSession().getKeys().getObject());
-		session.removeAttribute(courageProperties.getSession().getKeys().getName());
-		session.removeAttribute(courageProperties.getSession().getKeys().getEmail());
-		session.removeAttribute(courageProperties.getSession().getKeys().getGravatarURL());
+		session.removeAttribute(courageProp.getProp("session.keys.object"));
+		session.removeAttribute(courageProp.getProp("session.keys.name"));
+		session.removeAttribute(courageProp.getProp("session.keys.email"));
+		session.removeAttribute(courageProp.getProp("session.keys.gravatarURL"));
 		session.invalidate();
 	}
 	
@@ -122,7 +122,7 @@ public class MemberRestController {
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody Map<String, Object> getMyInfo(HttpSession session) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
-		MemberVO loginMember = (MemberVO) session.getAttribute(courageProperties.getSession().getKeys().getObject());
+		MemberVO loginMember = (MemberVO) session.getAttribute(courageProp.getProp("session.keys.object"));
 		
 		if (loginMember == null) {
 			throw new SessionExpiredException();
@@ -152,7 +152,7 @@ public class MemberRestController {
 	public void updateMember(HttpSession session,
 		@Validated(MemberUpdateValidate.class) @RequestBody MemberVO memberVO) throws Exception {
 		
-		MemberVO loginInfo = (MemberVO) session.getAttribute(courageProperties.getSession().getKeys().getObject());
+		MemberVO loginInfo = (MemberVO) session.getAttribute(courageProp.getProp("session.keys.object"));
 		memberVO.setSno(loginInfo.getSno());
 		
 		memberService.updateMember(memberVO);
@@ -177,7 +177,7 @@ public class MemberRestController {
 	public void changePassword(HttpSession session,
 			@Validated(MemberChangePasswordValidate.class) @RequestBody MemberVO memberVO) throws Exception {
 		
-		MemberVO loginInfo = (MemberVO) session.getAttribute(courageProperties.getSession().getKeys().getObject());
+		MemberVO loginInfo = (MemberVO) session.getAttribute(courageProp.getProp("session.keys.object"));
 		memberVO.setSno(loginInfo.getSno());
 		
 		memberService.updateMemberPassword(memberVO);
@@ -194,9 +194,9 @@ public class MemberRestController {
 	 * @param memberVO
 	 */
 	private void setSessionAttribute(HttpSession session, MemberVO memberVO) {
-		session.setAttribute(courageProperties.getSession().getKeys().getObject(), memberVO);
-		session.setAttribute(courageProperties.getSession().getKeys().getName(), memberVO.getName());
-		session.setAttribute(courageProperties.getSession().getKeys().getEmail(), memberVO.getEmail());
-		session.setAttribute(courageProperties.getSession().getKeys().getGravatarURL(), memberVO.getGravatarUrl());
+		session.setAttribute(courageProp.getProp("session.keys.object"), memberVO);
+		session.setAttribute(courageProp.getProp("session.keys.name"), memberVO.getName());
+		session.setAttribute(courageProp.getProp("session.keys.email"), memberVO.getEmail());
+		session.setAttribute(courageProp.getProp("session.keys.gravatarURL"), memberVO.getGravatarUrl());
 	}
 }

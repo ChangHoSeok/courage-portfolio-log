@@ -4,41 +4,62 @@
 	
 <head>
 
-<th:block th:fragment="resourceCSS" th:with="cssExt=${@environment.getProperty('courage.resource.cssExt')}">
+<th:block th:fragment="resourceCSS">
 	<meta charset="utf-8" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="description" content="Courage Portfolio Blog" />
 	<meta name="author" content="" />
 	
-	<!-- simple-datatables CSS -->
-	<link th:href="@{/css/simple-datatables/simple-datatables-3.0.2.{cssExt}?v=20210625(cssExt=${cssExt})}" href="css/simple-datatables/simple-datatables-3.0.2.css" rel="stylesheet" />
-	<!-- Theme CSS -->
-	<link th:href="@{/css/admin/styles.{cssExt}?v=20210625(cssExt=${cssExt})}" href="css/admin/style.css" rel="stylesheet" />
-	<!-- font-awesome -->
-    <script th:src="@{/webjars/font-awesome/5.15.3/js/all.min.js?v=20210625}" src="vendor/font-awesome/5.15.3/all.min.js" crossorigin="anonymous"></script>
-	<!-- Custom Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-	<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+	<!-- Bootstrap -->
+    <link th:href="@{/vendors/gentelella-template/bootstrap/dist/css/bootstrap.min.css?v=20210625}" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link th:href="@{/vendors/gentelella-template/font-awesome/css/font-awesome.min.css?v=20210625}" rel="stylesheet" />
+    <!-- NProgress -->
+    <link th:href="@{/vendors/gentelella-template/nprogress/nprogress.css?v=20210625}" rel="stylesheet" />
+    <!-- iCheck -->
+    <link th:href="@{/vendors/gentelella-template/iCheck/skins/flat/green.css?v=20210625}" rel="stylesheet" />
 	
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-	    <script th:src="@{/webjars/html5shiv/3.7.0/html5shiv.min.js?v=20210625}" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	    <script th:src="@{/webjars/respond/1.4.2/dest/respond.min.js?v=20210625}" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
+    <!-- bootstrap-progressbar -->
+    <link th:href="@{/vendors/gentelella-template/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css?v=20210625}" rel="stylesheet" />
+    <!-- JQVMap -->
+    <link th:href="@{/vendors/gentelella-template/jqvmap/dist/jqvmap.min.css?v=20210625}" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link th:href="@{/vendors/gentelella-template/bootstrap-daterangepicker/daterangepicker.css?v=20210625}" rel="stylesheet" />
+	<!-- PNotify -->
+    <link th:href="@{/vendors/gentelella-template/pnotify/dist/pnotify.css?v=20210625}" rel="stylesheet" />
+    <link th:href="@{/vendors/gentelella-template/pnotify/dist/pnotify.buttons.css?v=20210625}" rel="stylesheet" />
+    <link th:href="@{/vendors/gentelella-template/pnotify/dist/pnotify.nonblock.css?v=20210625}" rel="stylesheet" />
+    
+    <!-- Custom Theme Style -->
+    <link th:href="@{/vendors/gentelella-template/css/custom.min.css?v=20210625}" rel="stylesheet" />
 </th:block>
 
-<th:block th:fragment="resourceJS" th:with="jsExt=${@environment.getProperty('courage.resource.jsExt')}">
+<th:block th:fragment="resourceJS">
 	<!-- jQuery -->
-    <script th:src="@{/webjars/jquery/1.12.4/jquery.min.js?v=20210625}" src="vendor/jquery/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script th:src="@{/webjars/bootstrap/5.0.1/js/bootstrap.bundle.min.js?v=20210625}" src="vendor/bootstrap/5.0.1/js/bootstrap.bundle.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script th:src="@{/js/simple-datatables/simple-datatables-3.0.2.{jsExt}?v=20210625(jsExt=${jsExt})}" src="vendor/simple-datatables/simple-datatables-3.0.2.js"></script>
-
-	<script th:src="@{/js/admin/admin.{jsExt}?v=20210625(jsExt=${jsExt})}" src="js/admin.min.js"></script>
+    <script th:src="@{/vendors/gentelella-template/jquery/dist/jquery.min.js?v=20210625}"></script>
+    <!-- Bootstrap -->
+    <script th:src="@{/vendors/gentelella-template/bootstrap/dist/js/bootstrap.min.js?v=20210625}"></script>
+    <!-- FastClick -->
+    <script th:src="@{/vendors/gentelella-template/fastclick/lib/fastclick.js?v=20210625}"></script>
+    <!-- NProgress -->
+    <script th:src="@{/vendors/gentelella-template/nprogress/nprogress.js?v=20210625}"></script>
+    <!-- Chart.js -->
+    <script th:src="@{/vendors/gentelella-template/Chart.js/dist/Chart.min.js?v=20210625}"></script>
+	<!-- bootstrap-progressbar -->
+    <script th:src="@{/vendors/gentelella-template/bootstrap-progressbar/bootstrap-progressbar.min.js?v=20210625}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script th:src="@{/vendors/gentelella-template/moment/min/moment.min.js?v=20210625}"></script>
+    <script th:src="@{/vendors/gentelella-template/bootstrap-daterangepicker/daterangepicker.js?v=20210625}"></script>
+	<!-- PNotify -->
+    <script th:src="@{/vendors/gentelella-template/pnotify/dist/pnotify.js?v=20210625}"></script>
+    <script th:src="@{/vendors/gentelella-template/pnotify/dist/pnotify.buttons.js?v=20210625}"></script>
+    <script th:src="@{/vendors/gentelella-template/pnotify/dist/pnotify.nonblock.js?v=20210625}"></script>
+    
+    <!-- Custom Theme Scripts -->
+    <script th:src="@{/vendors/gentelella-template/js/custom.js?v=20210625}"></script>
+	<script th:src="@{/js/admin/admin.js?v=20210625}"></script>
 
 </th:block>
 </head>

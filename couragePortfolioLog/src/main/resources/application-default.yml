@@ -2,6 +2,7 @@ spring:
   profiles: default
   
   thymeleaf:
+    mode: HTML5
     cache: false
     enabled: true
     prefix: classpath:/templates/
@@ -42,6 +43,8 @@ logging:
 courage:
   web:
     title: Courage PortfoLog
+  admin:
+    title: Admin
   storage:
     savePath: C:/dev/courage/attachments
     whiteList: jpg, jpeg, png, gif
@@ -58,4 +61,4 @@ courage:
     gravatar:
       url: https://www.gravatar.com/avatar/
       defaultImg: identicon
-      size: 50
+      size: 200

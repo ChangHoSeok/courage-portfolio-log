@@ -29,7 +29,7 @@ public interface SetupRepository {
 	 * @Author	: ChangHo.Seok
 	 * @Date	: 2017. 11. 7.
 	 * @Method Name : selectSetup
-	 * @return
+	 * @return SetupVO
 	 */
 	public SetupVO selectSetup();
 	
@@ -40,7 +40,31 @@ public interface SetupRepository {
 	 * 
 	 * @Date	: 2017. 11. 7.
 	 * @Method Name : selectSetupCnt
-	 * @return
+	 * @return data count
 	 */
 	public int selectSetupCnt();
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 설정정보 등록
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo.Seok
+	 * @Date	: 2021. 6. 27.
+	 * @Method Name : insertSetup
+	 * @param vo
+	 */
+	public void insertSetup(SetupVO vo);
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : 설정정보 수정
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo.Seok
+	 * @Date	: 2021. 6. 27.
+	 * @Method Name : updateSetup
+	 * @param SetupVO
+	 */
+	public void updateSetup(SetupVO vo);
 }

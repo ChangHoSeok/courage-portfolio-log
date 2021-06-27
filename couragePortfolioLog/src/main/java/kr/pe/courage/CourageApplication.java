@@ -3,6 +3,7 @@ package kr.pe.courage;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,7 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * 1. 수정일 : 2017. 9. 30., 수정자 : ChangHo Seok, 수정내용 : 최초등록
  * </pre>
  */
-@Configuration
+@SpringBootApplication
 @ComponentScan(basePackages = "kr.pe.courage")
 @EnableTransactionManagement
 @EnableAutoConfiguration
@@ -34,6 +35,7 @@ public class CourageApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(applicationClass, args);
+		System.out.println("CourageApplication Started!!");
 	}
 
 	@Override
