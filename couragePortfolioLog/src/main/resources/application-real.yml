@@ -39,7 +39,7 @@ logging:
   
 courage:
   web:
-    title: COURAGE-PORTFOLIO
+    title: COURAGE
   admin:
     title: Admin
   storage:

@@ -9,14 +9,14 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias alias="HelloVO" type="kr.pe.courage.hello.domain.HelloVO"/>
 		<typeAlias alias="MemberVO" type="kr.pe.courage.member.domain.MemberVO"/>
 		<typeAlias alias="SetupVO" type="kr.pe.courage.setup.domain.SetupVO"/>
+		<typeAlias alias="ContactVO" type="kr.pe.courage.contact.domain.ContactVO"/>
 	</typeAliases>
 	
     <mappers>
-        <mapper resource="mybatis/mapper/Hello.xml"/>
         <mapper resource="mybatis/mapper/Member.xml"/>
         <mapper resource="mybatis/mapper/Setup.xml"/>
+        <mapper resource="mybatis/mapper/Contact.xml"/>
     </mappers>
 </configuration>

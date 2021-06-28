@@ -51,7 +51,7 @@ public class SetupRestController {
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody Map<String, Object> getSetup() throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
-		resultMap.put("setupInfo", setupService.getSetup());
+		resultMap.put("setupInfo", setupService.retrieveSetup());
 		
 		return resultMap;
 	}

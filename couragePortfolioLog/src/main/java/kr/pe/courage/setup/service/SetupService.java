@@ -40,7 +40,7 @@ public class SetupService {
 	 * @return
 	 * @throws DataNotFoundException 
 	 */
-	public SetupVO getSetup() throws DataNotFoundException {
+	public SetupVO retrieveSetup() throws DataNotFoundException {
 		if (setupRepository.selectSetupCnt() <= 0) {
 			throw new DataNotFoundException("설정 정보가 존재하지 않습니다.");
 		}

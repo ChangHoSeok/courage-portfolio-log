@@ -31,4 +31,9 @@ public class AdminViewController {
 	public String viewSetup() throws Exception {
 		return "admin/setup";
 	}
+	
+	@RequestMapping("/account.html")
+	public String accountSetup() throws Exception {
+		return "admin/account";
+	}
 }

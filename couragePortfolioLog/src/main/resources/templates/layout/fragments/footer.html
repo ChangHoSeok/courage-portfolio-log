@@ -41,9 +41,7 @@
         <div class="footer-below">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        Copyright &copy; Courage
-                    </div>
+                    <div class="col-lg-12" th:text="${introInfo.createBy} != null ? |Create By ${introInfo.createBy}| : 'Create By Courage'"></div>
                 </div>
             </div>
         </div>

@@ -1038,6 +1038,7 @@ function init_validator() {
 		validator.checkField.apply($(this).siblings().last()[0]);
 	});
 
+	/*
 	$('form').submit(function(e) {
 		e.preventDefault();
 		var submit = true;
@@ -1052,7 +1053,7 @@ function init_validator() {
 
 		return false;
 	});
-
+	*/
 };
 
 /* CUSTOM NOTIFICATION */

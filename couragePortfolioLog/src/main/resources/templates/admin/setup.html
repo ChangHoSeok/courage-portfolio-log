@@ -33,6 +33,13 @@
 	
 	function formValidate(mode) {
 		validator.defaults.alerts = true;
+		
+		if (validator.checkAll($('#formSetup'))) {
+			return true;
+		} else {
+			utils.alertWarning('입력값을 확인하세요.');
+			return false;
+		}
 	}
 	
 	$(document).ready(function() {
@@ -45,6 +52,10 @@
 			
 			if (!utils.isEmpty(pbSno)) {
 				type = 'PUT';
+			}
+			
+			if (!formValidate()) {
+				return false;
 			}
 			
 			$.ajax({
@@ -93,7 +104,7 @@
 </th:block>
 
 <head>
-<title>Setup</title> 
+<title>Intro</title> 
 </head>
 
 <body>
@@ -102,7 +113,7 @@
 		<div class="">
 			<div class="page-title">
 				<div class="title_left">
-					<h3>Setup</h3>
+					<h3>Intro</h3>
 				</div>
 			</div>
 			
@@ -113,7 +124,7 @@
 					<div class="x_panel">
 						<div class="x_title">
 							<h2>
-								기본 설정 <small>portfolio 메인 페이지에 표시될 정보들을 설정합니다.</small>
+								Intro 설정 <small>Portfolog Intro 페이지에 표시될 정보들을 설정합니다.</small>
 							</h2>
 							<ul class="nav navbar-right panel_toolbox">
 								<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -126,13 +137,13 @@
 								<input type="hidden" name="pbSno" id="pbSno" />
 								<input type="hidden" name="mainPhotoUrl" id="mainPhotoUrl" />
 								
-								<div class="form-group">
+								<div class="form-group item">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Title <span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input type="text" name="title" id="title" required="required" class="form-control col-md-7 col-xs-12" />
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group item">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="subTitle">SubTitle <span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input type="text" name="subTitle" id="subTitle" required="required" class="form-control col-md-7 col-xs-12" />
@@ -151,10 +162,10 @@
 										<input type="text" name="createBy" id="createBy" class="form-control col-md-7 col-xs-12" />
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group item">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="aboutMe">About Me <span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<textarea name="aboutMe" id="aboutMe" rows="5" class="form-control"></textarea>
+										<textarea name="aboutMe" id="aboutMe" rows="8" required="required" class="form-control"></textarea>
 									</div>
 								</div>
 								

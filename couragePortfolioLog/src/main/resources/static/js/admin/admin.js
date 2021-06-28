@@ -98,10 +98,18 @@ var utils = (function() {
 	}
 	
 	function alertInfo(alertMessage) {
+		alertPNotify(alertMessage, 'success');
+	}
+	
+	function alertWarning(alertMessage) {
+		alertPNotify(alertMessage, 'warning');
+	}
+	
+	function alertPNotify(message, type) {
 		new PNotify({
 			title: '안내',
-			text: alertMessage,
-			type: 'success',
+			text: message,
+			type: type,
 			styling: 'bootstrap3',
 			delay: 3000
 		});
@@ -135,7 +143,8 @@ var utils = (function() {
 		isAuthentication : isAuthentication,
 		alertInfo : alertInfo,
 		isEmpty : isEmpty,
-		setFormData : setFormData
+		setFormData : setFormData,
+		alertWarning : alertWarning
 	}
 })();
 
