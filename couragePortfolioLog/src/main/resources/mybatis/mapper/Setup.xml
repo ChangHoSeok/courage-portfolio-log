@@ -7,10 +7,7 @@
 	
 	<select id="selectSetup" resultType="SetupVO">
 		SELECT PB_SNO AS pbSno, TITLE AS title, SUB_TITLE AS subTitle,
-			   MAIN_PHOTO_URL AS mainPhotoUrl, DESC AS desc, ABOUT_ME AS aboutMe,
-			   LOCATION AS location, AROUND_THE_WEB AS aroundTheWeb, GITHUB AS github,
-			   FACEBOOK AS facebook, TWITTER AS twitter, GOOGLE_PLUS AS googlePlus,
-			   LINKED_IN AS linkedIn, COPYLIGHT AS copylight
+			   MAIN_PHOTO_URL AS mainPhotoUrl, ABOUT_ME AS aboutMe, CREATE_BY AS createBy
 		  FROM TB_SETUP
 		 ORDER BY PB_SNO DESC
 		 LIMIT 1
@@ -23,13 +20,9 @@
 	
 	<insert id="insertSetup" parameterType="SetupVO" useGeneratedKeys="true" keyProperty="pbSno" keyColumn="PB_SNO">
 		INSERT INTO TB_SETUP (
-			TITLE, SUB_TITLE, MAIN_PHOTO_URL, DESC,
-			ABOUT_ME, GITHUB, FACEBOOK, TWITTER,
-			GOOGLE_PLUS, LINKED_IN, COPYLIGHT
+			TITLE, SUB_TITLE, MAIN_PHOTO_URL, ABOUT_ME, CREATE_BY
 		) VALUES (
-			#{title}, #{subTitle}, #{mainPhotoUrl}, #{desc},
-			#{aboutMe}, #{github}, #{facebook}, #{twitter},
-			#{googlePlus}, #{linkedIn}, #{copylight}
+			#{title}, #{subTitle}, #{mainPhotoUrl}, #{aboutMe}, #{createBy}
 		)
 	</insert>
 	
@@ -38,14 +31,8 @@
 			TITLE = #{title},
 			SUB_TITLE = #{subTitle},
 			MAIN_PHOTO_URL = #{mainPhotoUrl},
-			DESC = #{desc},
 			ABOUT_ME = #{aboutMe},
-			GITHUB = #{github},
-			FACEBOOK = #{facebook},
-			TWITTER = #{twitter},
-			GOOGLE_PLUS = #{googlePlus},
-			LINKED_IN = #{linkedIn},
-			COPYLIGHT = #{copylight}
+			CREATE_BY = #{createBy}
 		 WHERE PB_SNO = #{pbSno}
 	</update>
 </mapper>

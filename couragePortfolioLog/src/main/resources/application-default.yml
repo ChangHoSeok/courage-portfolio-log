@@ -10,7 +10,7 @@ spring:
   
   datasource:
     driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:sqlite:D:/dev/git_repo/courage-portfolio-log/database/courage-portfolio.db
+    url: jdbc:log4jdbc:sqlite:C:/Users/schkk/git/courage-portfolio-log/database/courage-portfolio.db
     username: 
     password: 
 

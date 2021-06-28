@@ -48,6 +48,7 @@ public class AdminRestController {
 		Map<String, Object> resultMap = new HashMap<>();
 		
 		adminService.updateSetupData(setupVO);
+		resultMap.put("pbSno", setupVO.getPbSno());
 		resultMap.put("result", "success");
 		
 		return resultMap;

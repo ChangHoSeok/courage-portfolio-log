@@ -31,6 +31,10 @@
 	    });
 	}
 	
+	function formValidate(mode) {
+		validator.defaults.alerts = true;
+	}
+	
 	$(document).ready(function() {
 		// 초기 정보 로딩
 		retrieveSetup();
@@ -135,10 +139,22 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="mainImage">Main Image <span class="required">*</span></label>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="mainImage">Main Image </label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<img id="imgMainImage" alt="" src="" style="margin-bottom: 10px; max-width: 390px;" />
-										<input type="file" name="fileMainImage" id="fileMainImage" required="required" class="form-control col-md-7 col-xs-12" />
+										<input type="file" name="fileMainImage" id="fileMainImage" class="form-control col-md-7 col-xs-12" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="copylight">CreateBy </label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input type="text" name="createBy" id="createBy" class="form-control col-md-7 col-xs-12" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="aboutMe">About Me <span class="required">*</span></label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<textarea name="aboutMe" id="aboutMe" rows="5" class="form-control"></textarea>
 									</div>
 								</div>
 								

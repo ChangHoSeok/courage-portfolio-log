@@ -50,14 +50,11 @@ public class SetupVO {
 	private String subTitle;
 	
 	private String mainPhotoUrl;
-	private String desc;
+	
+	@NotEmpty(
+			message = "About Me(은)는 필수 항목 입니다.",
+			groups = {CreateValidateGroup.class, ModifyValidateGroup.class})
 	private String aboutMe;
-	private String location;
-	private String aroundTheWeb;
-	private String github;
-	private String facebook;
-	private String twitter;
-	private String googlePlus;
-	private String linkedIn;
-	private String copylight;
+	
+	private String createBy;
 }

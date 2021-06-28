@@ -122,6 +122,8 @@ var utils = (function() {
 			
 			if (type == 'text' || type == 'hidden') {
 				obj.val(jsonData[key]);
+			} else if (type == 'textarea') {
+				obj.html(jsonData[key]);
 			}
 		}
 	}
