@@ -31,4 +31,5 @@ target/
 ## Etc
 #################
 *.log
+goorm.manifest
 rebel.xml
