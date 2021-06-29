@@ -128,7 +128,7 @@ var utils = (function() {
 			var obj = $('#' + formId).find('#' + key);
 			var type = obj.prop('type');
 			
-			if (type == 'text' || type == 'hidden') {
+			if (type == 'text' || type == 'hidden' || type == 'url') {
 				obj.val(jsonData[key]);
 			} else if (type == 'textarea') {
 				obj.html(jsonData[key]);

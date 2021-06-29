@@ -2,11 +2,15 @@
 package kr.pe.courage.setup.domain;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.URL;
 
 import kr.pe.courage.common.CreateValidateGroup;
 import kr.pe.courage.common.ModifyValidateGroup;
+import kr.pe.courage.member.domain.MemberChangePasswordValidate;
+import kr.pe.courage.member.domain.MemberSignInValidate;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -57,4 +61,34 @@ public class SetupVO {
 	private String aboutMe;
 	
 	private String createBy;
+	
+	@Pattern(
+			regexp = "^((https?|ftp)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])?",
+			message = "URL 형식을 입력하세요",
+			groups = {CreateValidateGroup.class, ModifyValidateGroup.class})
+	private String github;
+	
+	@Pattern(
+			regexp = "^((https?|ftp)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])?",
+			message = "URL 형식을 입력하세요",
+			groups = {CreateValidateGroup.class, ModifyValidateGroup.class})
+	private String facebook;
+	
+	@Pattern(
+			regexp = "^((https?|ftp)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])?",
+			message = "URL 형식을 입력하세요",
+			groups = {CreateValidateGroup.class, ModifyValidateGroup.class})
+	private String googlePlus;
+	
+	@Pattern(
+			regexp = "^((https?|ftp)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])?",
+			message = "URL 형식을 입력하세요",
+			groups = {CreateValidateGroup.class, ModifyValidateGroup.class})
+	private String twitter;
+	
+	@Pattern(
+			regexp = "^^((https?|ftp)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])?",
+			message = "URL 형식을 입력하세요",
+			groups = {CreateValidateGroup.class, ModifyValidateGroup.class})
+	private String linkedIn;
 }

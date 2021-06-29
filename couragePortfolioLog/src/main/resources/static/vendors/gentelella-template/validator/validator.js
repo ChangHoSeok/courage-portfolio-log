@@ -363,9 +363,14 @@ var validator = (function($){
                 data.valid = testByType(data.type, data.val);
 
         }
+        
+        // 선택항목에 값이 없을경우 검증 성공
+        if (field.hasClass('optional') && data.val == '') {
+        	data.valid = true;
+        }
 
         // mark / unmark the field, and set the general 'submit' flag accordingly
-        if( data.valid )
+        if( data.valid)
             unmark( field );
         else{
             mark( field, alertTxt );
