@@ -10,20 +10,20 @@
                     <div class="footer-col col-md-8 col-md-offset-2">
                         <h3>Around the Web</h3>
                         <ul class="list-inline">
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Github</span><i class="fa fa-fw fa-github"></i></a>
+                            <li th:if="${introInfo.github != null and introInfo.github !=''}">
+                                <a th:href="${introInfo.github}" target="_blank" class="btn-social btn-outline"><span class="sr-only">Github</span><i class="fa fa-fw fa-github"></i></a>
                             </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Facebook</span><i class="fa fa-fw fa-facebook"></i></a>
+                            <li th:if="${introInfo.facebook != null and introInfo.facebook !=''}">
+                                <a th:href="${introInfo.facebook}" target="_blank" class="btn-social btn-outline"><span class="sr-only">Facebook</span><i class="fa fa-fw fa-facebook"></i></a>
                             </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Google Plus</span><i class="fa fa-fw fa-google-plus"></i></a>
+                            <li th:if="${introInfo.googlePlus != null and introInfo.googlePlus !=''}">
+                                <a th:href="${introInfo.googlePlus}" target="_blank" class="btn-social btn-outline"><span class="sr-only">Google Plus</span><i class="fa fa-fw fa-google-plus"></i></a>
                             </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Twitter</span><i class="fa fa-fw fa-twitter"></i></a>
+                            <li th:if="${introInfo.twitter != null and introInfo.twitter !=''}">
+                                <a th:href="${introInfo.twitter}" target="_blank" class="btn-social btn-outline"><span class="sr-only">Twitter</span><i class="fa fa-fw fa-twitter"></i></a>
                             </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Linked In</span><i class="fa fa-fw fa-linkedin"></i></a>
+                            <li th:if="${introInfo.linkedIn != null and introInfo.linkedIn !=''}">
+                                <a th:href="${introInfo.linkedIn}" target="_blank" class="btn-social btn-outline"><span class="sr-only">Linked In</span><i class="fa fa-fw fa-linkedin"></i></a>
                             </li>
                         </ul>
                     </div>
