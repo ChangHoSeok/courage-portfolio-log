@@ -543,6 +543,6 @@ img.rotate {
 .dropdown a {
 	color: #333 !important
 }
-#profileForm .control-group {
+.modalForm .control-group {
 	text-align: left;
 }

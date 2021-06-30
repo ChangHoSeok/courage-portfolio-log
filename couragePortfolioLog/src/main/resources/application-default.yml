@@ -2,6 +2,7 @@ spring:
   profiles: default
   
   thymeleaf:
+    mode: HTML5
     cache: false
     enabled: true
     prefix: classpath:/templates/
@@ -9,10 +10,13 @@ spring:
   
   datasource:
     driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:sqlite:C:/dev/courage-portfolio.db
+    url: jdbc:log4jdbc:sqlite:/workspace/courage-portfolio-lo/database/courage-portfolio.db
     username: 
     password: 
 
+  devtools:
+    livereload:
+      enabled: true
 mybatis:
   config-location: classpath:/mybatis/config/mybatis-config.xml
   
@@ -38,9 +42,11 @@ logging:
   
 courage:
   web:
-    title: Courage PortfoLog
+    title: Courage
+  admin:
+    title: Admin
   storage:
-    savePath: C:/dev/kaki/attachments
+    savePath: C:/dev/courage/attachments
     whiteList: jpg, jpeg, png, gif
   resource:
     jsExt: js
@@ -55,4 +61,4 @@ courage:
     gravatar:
       url: https://www.gravatar.com/avatar/
       defaultImg: identicon
-      size: 50
+      size: 200

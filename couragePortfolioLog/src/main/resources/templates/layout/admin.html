@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+<head th:fragment="adminResourceConfigFragment">
+
+<title th:text="${@environment.getProperty('courage.web.title')}" layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Courage PortfoLog</title>
+
+<th:block th:replace="layout/fragments/adminResourceConfig :: resourceCSS"></th:block>
+<th:block layout:fragment="cssResource"></th:block>
+<script th:inline="javascript">
+	var jsContextPath = /*[[${#httpServletRequest.getContextPath()}]]*/ "";
+</script>
+</head>
+
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<div th:replace="layout/fragments/adminSideNavigation :: navigationFragment"></div>
+			
+			<div th:replace="layout/fragments/adminTopNavigation :: navigationFragment"></div>
+			
+			<div layout:fragment="contents"></div>
+			
+			<footer th:replace="layout/fragments/adminFooter :: footerFragment"></footer>
+		</div>
+	</div>
+	
+	<th:block th:replace="layout/fragments/adminResourceConfig :: resourceJS"></th:block>
+	<script th:inline="javascript">
+		$(document).ajaxStart(NProgress.start).ajaxStop(NProgress.done);
+	</script>
+	<th:block layout:fragment="jsResource"></th:block>
+</body>
+</html>

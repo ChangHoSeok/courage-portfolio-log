@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko"
+	xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+
+<th:block th:fragment="resourceCSS">
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Courage Portfolio Blog" />
+	<meta name="author" content="" />
+	
+	<!-- Bootstrap -->
+    <link th:href="@{/vendors/gentelella-template/bootstrap/dist/css/bootstrap.min.css?v=20210625}" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link th:href="@{/vendors/gentelella-template/font-awesome/css/font-awesome.min.css?v=20210625}" rel="stylesheet" />
+    <!-- NProgress -->
+    <link th:href="@{/vendors/gentelella-template/nprogress/nprogress.css?v=20210625}" rel="stylesheet" />
+    <!-- iCheck -->
+    <link th:href="@{/vendors/gentelella-template/iCheck/skins/flat/green.css?v=20210625}" rel="stylesheet" />
+	
+    <!-- bootstrap-progressbar -->
+    <link th:href="@{/vendors/gentelella-template/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css?v=20210625}" rel="stylesheet" />
+    <!-- JQVMap -->
+    <link th:href="@{/vendors/gentelella-template/jqvmap/dist/jqvmap.min.css?v=20210625}" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link th:href="@{/vendors/gentelella-template/bootstrap-daterangepicker/daterangepicker.css?v=20210625}" rel="stylesheet" />
+	<!-- PNotify -->
+    <link th:href="@{/vendors/gentelella-template/pnotify/dist/pnotify.css?v=20210625}" rel="stylesheet" />
+    <link th:href="@{/vendors/gentelella-template/pnotify/dist/pnotify.buttons.css?v=20210625}" rel="stylesheet" />
+    <link th:href="@{/vendors/gentelella-template/pnotify/dist/pnotify.nonblock.css?v=20210625}" rel="stylesheet" />
+    
+    <!-- Custom Theme Style -->
+    <link th:href="@{/vendors/gentelella-template/css/custom.min.css?v=20210625}" rel="stylesheet" />
+</th:block>
+
+<th:block th:fragment="resourceJS">
+	<!-- jQuery -->
+    <script th:src="@{/vendors/gentelella-template/jquery/dist/jquery.min.js?v=20210625}"></script>
+    <!-- Bootstrap -->
+    <script th:src="@{/vendors/gentelella-template/bootstrap/dist/js/bootstrap.min.js?v=20210625}"></script>
+    <!-- FastClick -->
+    <script th:src="@{/vendors/gentelella-template/fastclick/lib/fastclick.js?v=20210625}"></script>
+    <!-- NProgress -->
+    <script th:src="@{/vendors/gentelella-template/nprogress/nprogress.js?v=20210625}"></script>
+    <!-- Chart.js -->
+    <script th:src="@{/vendors/gentelella-template/Chart.js/dist/Chart.min.js?v=20210625}"></script>
+	<!-- bootstrap-progressbar -->
+    <script th:src="@{/vendors/gentelella-template/bootstrap-progressbar/bootstrap-progressbar.min.js?v=20210625}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script th:src="@{/vendors/gentelella-template/moment/min/moment.min.js?v=20210625}"></script>
+    <script th:src="@{/vendors/gentelella-template/bootstrap-daterangepicker/daterangepicker.js?v=20210625}"></script>
+	<!-- PNotify -->
+    <script th:src="@{/vendors/gentelella-template/pnotify/dist/pnotify.js?v=20210625}"></script>
+    <script th:src="@{/vendors/gentelella-template/pnotify/dist/pnotify.buttons.js?v=20210625}"></script>
+    <script th:src="@{/vendors/gentelella-template/pnotify/dist/pnotify.nonblock.js?v=20210625}"></script>
+    <!-- validator -->
+    <script th:src="@{/vendors/gentelella-template/validator/validator.js?v=20210625}"></script>
+    
+    <!-- Custom Theme Scripts -->
+    <script th:src="@{/vendors/gentelella-template/js/custom.js?v=20210625}"></script>
+	<script th:src="@{/js/admin/admin.js?v=20210625}"></script>
+
+</th:block>
+</head>
+</html>

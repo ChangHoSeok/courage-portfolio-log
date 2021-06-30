@@ -7,7 +7,7 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
-                <a class="navbar-brand" href="#page-top">Courage</a>
+                <a class="navbar-brand" href="#page-top" th:text="${@environment.getProperty('courage.web.title')}">Main Title</a>
                 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
@@ -16,7 +16,7 @@
                 <div id="avartar-xs" class="avartar visible-xs" style="display: none !important">
                 	<div class="dropdown pull-right">
 		               	<a href="#" data-toggle="dropdown" class="dropdown-toggle">
-							<img alt="avatar" th:src="@{/images/avatar/anonymous.png}" src="/images/avatar/anonymous.png" class="rotate gravatarImg" />
+							<img alt="avatar" th:src="@{/images/avatar/anonymous.png}" class="rotate gravatarImg" />
 						</a>
 						
 						<th:block th:replace="layout/fragments/navigation :: dropdown-menu"></th:block>
@@ -47,7 +47,7 @@
                     <li class="hidden-xs avartar" style="display: none !important;">
                     	<div class="dropdown">
 	                    	<a href="#" data-toggle="dropdown" class="dropdown-toggle" style="margin-left: 15px; background-color: #2c3e50">
-	                    		<img alt="avatar" th:src="@{/images/avatar/anonymous.png}" src="/images/avatar/anonymous.png" class="rotate gravatarImg" />
+	                    		<img alt="avatar" th:src="@{/images/avatar/anonymous.png}" class="rotate gravatarImg" />
 	                    	</a>
 							
 							<th:block th:replace="layout/fragments/navigation :: dropdown-menu"></th:block>
@@ -62,8 +62,7 @@
     
     <th:block th:fragment="dropdown-menu">
     	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-			<li><a href="#profileModal" role="menuitem" data-toggle="modal">Profile</a></li>
-			<li><a role="menuitem">Setting</a></li>
+			<li><a th:href="@{/admin/dashboard.html}" role="menuitem" data-toggle="modal">Go to Admin</a></li>
 			<li class="divider"></li>
 			<li><a role="menuitem" class="signOut">Sign Out</a></li>
 		</ul>

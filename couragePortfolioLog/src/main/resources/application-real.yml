@@ -2,6 +2,7 @@ spring:
   profiles: real
   
   thymeleaf:
+    mode: HTML5
     cache: false
     enabled: true
     prefix: classpath:/templates/
@@ -38,7 +39,9 @@ logging:
   
 courage:
   web:
-    title: COURAGE-PORTFOLIO
+    title: COURAGE
+  admin:
+    title: Admin
   storage:
     savePath: {attachments filepath}
     whiteList: jpg, jpeg, png, gif

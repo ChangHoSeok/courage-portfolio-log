@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko"
+	xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title th:text="${@environment.getProperty('courage.web.title')}">Courage PortfoLog</title>
+
+<!-- Bootstrap -->
+<link th:href="@{/vendors/gentelella-template/bootstrap/dist/css/bootstrap.min.css?v=20210625}" rel="stylesheet" />
+<!-- Custom Theme Style -->
+<link th:href="@{/vendors/gentelella-template/css/custom.min.css?v=20210625}" rel="stylesheet" />
+</head>
+
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<!-- page content -->
+			<div class="col-xs-12">
+				<div class="col-middle">
+					<div class="text-center text-center">
+						<h1 class="error-number">403</h1>
+						<h2>접근 권한이 없습니다.</h2>
+						<p>
+							접근한 페이지에 권한이 없습니다. <a href="#">관리자에게 요청하시겠습니까?</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<!-- Bootstrap -->
+<script th:src="@{/vendors/gentelella-template/bootstrap/dist/js/bootstrap.min.js?v=20210625}"></script>
+</html>

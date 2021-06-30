@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko"
+	xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title th:text="${@environment.getProperty('courage.web.title')}">Courage PortfoLog</title>
+
+<!-- Bootstrap -->
+<link th:href="@{/vendors/gentelella-template/bootstrap/dist/css/bootstrap.min.css?v=20210625}" rel="stylesheet" />
+<!-- Custom Theme Style -->
+<link th:href="@{/vendors/gentelella-template/css/custom.min.css?v=20210625}" rel="stylesheet" />
+</head>
+
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<!-- page content -->
+			<div class="col-xs-12">
+				<div class="col-middle">
+					<div class="text-center text-center">
+						<h1 class="error-number">500</h1>
+						<h2>시스템 오류가 발생했습니다.</h2>
+						<p>
+							오류는 자동으로 추적되며, 이미 확인 후 처리 중일 수 있습니다. 문제가 지속되면 언제든 연락해주세요. <a href="#">관리자에게 요청하시겠습니까?</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<!-- Bootstrap -->
+<script th:src="@{/vendors/gentelella-template/bootstrap/dist/js/bootstrap.min.js?v=20210625}"></script>
+</html>
