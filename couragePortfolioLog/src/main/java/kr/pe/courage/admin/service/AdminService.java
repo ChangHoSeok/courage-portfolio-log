@@ -1,8 +1,12 @@
 package kr.pe.courage.admin.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.pe.courage.contact.domain.ContactRepository;
+import kr.pe.courage.contact.domain.ContactVO;
 import kr.pe.courage.exception.DataNotFoundException;
 import kr.pe.courage.setup.domain.SetupRepository;
 import kr.pe.courage.setup.domain.SetupVO;
@@ -12,6 +16,8 @@ import kr.pe.courage.setup.exception.ExistsSetupException;
 public class AdminService {
 	@Autowired
 	private SetupRepository setupRepo;
+	@Autowired
+	private ContactRepository contactRepo;
 	
 	/**
 	 * <pre>
@@ -49,5 +55,43 @@ public class AdminService {
 		}
 		
 		setupRepo.updateSetup(vo);
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : contact 목록 조회
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo.Seok
+	 * @Date	: 2021. 7. 2.
+	 * @Method Name : selectContactList
+	 * @param ContactVO
+	 * @return List<ContactVO>
+	 * @throws DataNotFoundException
+	 */
+	public List<ContactVO> selectContactList(ContactVO vo) {
+		return contactRepo.selectContactList(vo);
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : contact 정보 조회
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo.Seok
+	 * @Date	: 2021. 6. 30.
+	 * @Method Name : selectContact
+	 * @param ContactVO
+	 * @return ContactVO
+	 * @throws DataNotFoundException
+	 */
+	public ContactVO selectContact(ContactVO vo) throws DataNotFoundException {
+		ContactVO resultVO = contactRepo.selectContact(vo);
+		
+		if (resultVO == null) {
+			throw new DataNotFoundException("정보가 존재하지 않습니다. [" + vo.getSno() + "]");
+		}
+		
+		return resultVO;
 	}
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.pe.courage.admin.service.AdminService;
 import kr.pe.courage.common.CreateValidateGroup;
 import kr.pe.courage.common.ModifyValidateGroup;
+import kr.pe.courage.contact.domain.ContactVO;
+import kr.pe.courage.exception.DataNotFoundException;
 import kr.pe.courage.setup.domain.SetupVO;
 
 @RestController
@@ -50,6 +52,28 @@ public class AdminRestController {
 		adminService.updateSetupData(setupVO);
 		resultMap.put("pbSno", setupVO.getPbSno());
 		resultMap.put("result", "success");
+		
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/contact",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody Map<String, Object> retrieveContactList(ContactVO contactVO) throws Exception {
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("resultList", adminService.selectContactList(contactVO));
+		
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/contact/{sno}",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody Map<String, Object> retrieveContactDetail(ContactVO contactVO) throws Exception {
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("contactVO", adminService.selectContact(contactVO));
 		
 		return resultMap;
 	}

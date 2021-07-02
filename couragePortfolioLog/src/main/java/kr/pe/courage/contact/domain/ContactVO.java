@@ -1,5 +1,7 @@
 package kr.pe.courage.contact.domain;
 
+import java.util.Date;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import kr.pe.courage.common.CreateValidateGroup;
@@ -30,4 +32,6 @@ public class ContactVO {
 			message = "메시지는 필수 항목 입니다.",
 			groups = {CreateValidateGroup.class, ModifyValidateGroup.class})
 	private String message;
+	
+	private Date registerDate;
 }

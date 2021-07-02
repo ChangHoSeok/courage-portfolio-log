@@ -3,22 +3,119 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout/admin">
-<head>
-<title>Contact</title> 
 
 <th:block layout:fragment="cssResource">
 	
 </th:block>
 
 <th:block layout:fragment="jsResource">
-	
+<script type="text/javascript">
+<!--
+	function initContact() {
+		$.ajax({
+			url: jsContextPath + "/admin/contact",
+			type: "GET",
+	        dataType:'json',
+	        contentType : 'application/json; charset=UTF-8',
+	        cache: false,
+	        success: function(json) {
+	        	if (json) {
+	        		if (!utils.isEmpty(json.resultList) && json.resultList.length > 0) {
+	        			for (idx in json.resultList) {
+		        			console.info(json.resultList[idx]);
+		        			
+		        			var messageEle = $('#messageTemplate').clone().css('display', '');
+		        			$(messageEle).find('#name').html(json.resultList[idx].name);
+		        			$(messageEle).find('#message').html(json.resultList[idx].message.replace(/ /gi, '&nbsp;').replace(/\r\n/gi, '<br />'));
+		        			$(messageEle).find('#phone').html(json.resultList[idx].phone);
+		        			$(messageEle).find('#email').html(json.resultList[idx].email);
+		        			
+		        			var registerDate = moment(json.resultList[idx].registerDate);
+		        			$(messageEle).find('#day').html(registerDate.format('DD'));
+		        			$(messageEle).find('#month').html(registerDate.format('MMMM'));
+		        			$(messageEle).find('#time').html(registerDate.format('HH:mm'));
+		        			
+		        			$('#messageList').append(messageEle);
+		        		}
+	        		} else {
+	        			$('#messageEmpty').show();
+	        		}
+	        	}
+	        },
+	        error: function(jqXHR, textStatus, errorThrow) {
+	        	utils.errorHandle(jqXHR);
+	        	utils.isAuthentication(jqXHR.status);
+			}
+	    });
+	}
+
+	$(document).ready(function() {
+		initContact();
+	});
+//-->
+</script>
 </th:block>
+
+<head>
+<title>Contact</title> 
 </head>
 
 <body>
 	<th:block layout:fragment="contents">
 	<div class="right_col" role="main">
-		
+		<div class="">
+			<div class="page-title">
+				<div class="title_left">
+					<h3>Contact Me</h3>
+				</div>
+			</div>
+			
+			<div class="clearfix"></div>
+			
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="x_panel">
+						<div class="x_content">
+							<ul id="messageList" class="messages">
+								<li id="messageTemplate" style="display: none;">
+									<div class="message_date">
+										<h3 id="day" class="date text-info">24</h3>
+										<p id="month" class="month">May</p>
+										<p id="time" class="month">13:59</p>
+									</div>
+									
+									<div class="message_wrapper">
+										<h4 id="name" class="heading">Desmond Davison</h4>
+										
+										<blockquote id="message" class="message">
+											Raw denim you
+											probably haven't heard of them jean shorts Austin. Nesciunt
+											tofu stumptown aliqua butcher retro keffiyeh dreamcatcher
+											synth.
+										</blockquote>
+										
+										<br />
+										
+										<p class="url">
+											<i class="fa fa-mobile-phone"></i> <span id="phone">010-123-1234</span>
+											<i class="fa fa-envelope-o" style="margin-left:10px;"></i> <span id="email">schkkh@naver.com</span>
+										</p>
+									</div>
+								</li>
+								
+								<li id="messageEmpty" style="display: none;">
+									<div class="message_wrapper">
+										<blockquote id="message" class="message">
+											등록된 데이터가 없습니다.
+										</blockquote>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	</th:block>
 </body>

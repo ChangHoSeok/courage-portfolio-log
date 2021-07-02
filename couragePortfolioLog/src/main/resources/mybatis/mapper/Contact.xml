@@ -4,11 +4,44 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
 <mapper namespace="kr.pe.courage.contact.domain.ContactRepository">
+	<resultMap type="ContactVO" id="contactList-resultMap">
+		<result property="sno" 				column="sno"/>
+		<result property="name" 			column="name"/>
+		<result property="email" 			column="email"/>
+		<result property="phone" 			column="phone"/>
+		<result property="message" 			column="message"/>
+		<result property="registerDate" 	column="registerDate"/>
+	</resultMap>
+	
 	<insert id="insertContact" parameterType="ContactVO" useGeneratedKeys="true" keyProperty="sno" keyColumn="SNO">
 		INSERT INTO TB_CONTACT (
-			NAME, EMAIL, PHONE, MESSAGE
+			NAME, EMAIL, PHONE, MESSAGE, REGISTER_DATE
 		) values (
-			#{name}, #{email}, #{phone}, #{message}
+			#{name}, #{email}, #{phone}, #{message}, datetime('now', 'localtime')
 		)
 	</insert>
+	
+	<select id="selectContact" parameterType="ContactVO" resultType="ContactVO">
+		SELECT 
+			SNO AS sno,
+			NAME AS name,
+			EMAIL AS email,
+			PHONE AS phone,
+			MESSAGE AS message,
+			strftime('%Y-%m-%d %H:%M:%S.%f', REGISTER_DATE) AS registerDate
+		  FROM TB_CONTACT
+		 WHERE SNO = #{sno}
+	</select>
+	
+	<select id="selectContactList" parameterType="ContactVO" resultMap="contactList-resultMap">
+		SELECT 
+			SNO AS sno,
+			NAME AS name,
+			EMAIL AS email,
+			PHONE AS phone,
+			MESSAGE AS message,
+			strftime('%Y-%m-%d %H:%M:%S.%f', REGISTER_DATE) AS registerDate
+		  FROM TB_CONTACT
+		 ORDER BY REGISTER_DATE DESC
+	</select>
 </mapper>
