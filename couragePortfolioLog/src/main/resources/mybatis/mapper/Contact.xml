@@ -10,6 +10,7 @@
 		<result property="email" 			column="email"/>
 		<result property="phone" 			column="phone"/>
 		<result property="message" 			column="message"/>
+		<result property="reply" 			column="reply"/>
 		<result property="registerDate" 	column="registerDate"/>
 	</resultMap>
 	
@@ -28,6 +29,7 @@
 			EMAIL AS email,
 			PHONE AS phone,
 			MESSAGE AS message,
+			REPLY AS reply,
 			strftime('%Y-%m-%d %H:%M:%S.%f', REGISTER_DATE) AS registerDate
 		  FROM TB_CONTACT
 		 WHERE SNO = #{sno}
@@ -40,8 +42,20 @@
 			EMAIL AS email,
 			PHONE AS phone,
 			MESSAGE AS message,
+			REPLY AS reply,
 			strftime('%Y-%m-%d %H:%M:%S.%f', REGISTER_DATE) AS registerDate
 		  FROM TB_CONTACT
 		 ORDER BY REGISTER_DATE DESC
 	</select>
+	
+	<update id="updateReply" parameterType="ContactVO">
+		UPDATE TB_CONTACT SET
+			REPLY = #{reply}
+		 WHERE SNO = #{sno}
+	</update>
+	
+	<delete id="deleteContact" parameterType="ContactVO">
+		DELETE FROM TB_CONTACT
+		 WHERE SNO = #{sno}
+	</delete>
 </mapper>

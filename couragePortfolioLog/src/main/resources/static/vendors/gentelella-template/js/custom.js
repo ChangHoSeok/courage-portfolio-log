@@ -48,6 +48,14 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
 	$NAV_MENU = $('.nav_menu'),
 	$FOOTER = $('footer');
 
+function setSwitchery(switchElement, checkedBool) {
+	if (checkedBool && !switchElement.checked) {
+		$(switchElement).trigger('click').attr('checked', 'checked');
+	} else if (!checkBool && switchElement.checked) {
+		$(switchElement).trigger('click').remiveAttr('checked');
+	}
+}
+
 // Sidebar
 function init_sidebar() {
 	// TODO: This is some kind of easy fix, maybe we can improve this
@@ -64,7 +72,7 @@ function init_sidebar() {
 		// normalize content
 		contentHeight -= $NAV_MENU.height() + footerHeight;
 
-		$RIGHT_COL.css('min-height', contentHeight - 24);
+		$RIGHT_COL.css('min-height', contentHeight);
 	};
 
 	$SIDEBAR_MENU.find('a').on('click', function(ev) {
@@ -202,21 +210,6 @@ if ($(".progress .progress-bar")[0]) {
 	$('.progress .progress-bar').progressbar();
 }
 // /Progressbar
-
-// Switchery
-$(document).ready(
-		function() {
-			if ($(".js-switch")[0]) {
-				var elems = Array.prototype.slice.call(document
-						.querySelectorAll('.js-switch'));
-				elems.forEach(function(html) {
-					var switchery = new Switchery(html, {
-						color : '#26B99A'
-					});
-				});
-			}
-		});
-// /Switchery
 
 // iCheck
 $(document).ready(function() {

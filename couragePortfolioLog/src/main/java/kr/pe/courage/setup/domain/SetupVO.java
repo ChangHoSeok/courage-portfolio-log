@@ -5,12 +5,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.URL;
 
 import kr.pe.courage.common.CreateValidateGroup;
 import kr.pe.courage.common.ModifyValidateGroup;
-import kr.pe.courage.member.domain.MemberChangePasswordValidate;
-import kr.pe.courage.member.domain.MemberSignInValidate;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

@@ -43,4 +43,28 @@ public interface ContactRepository {
 	 * @return List<ContactVO>
 	 */
 	public List<ContactVO> selectContactList(ContactVO vo);
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : Contact 회신 상태 변경
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo.Seok
+	 * @Date	: 2021. 7. 4.
+	 * @Method Name : deleteContact
+	 * @param ContactVO
+	 */
+	public void updateReply(ContactVO vo);
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : Contact 정보 삭제
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo.Seok
+	 * @Date	: 2021. 7. 4.
+	 * @Method Name : deleteContact
+	 * @param ContactVO
+	 */
+	public void deleteContact(ContactVO vo);
 }

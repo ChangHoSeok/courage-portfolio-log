@@ -94,4 +94,46 @@ public class AdminService {
 		
 		return resultVO;
 	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : contact 회신 상태 변경
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo.Seok
+	 * @Date	: 2021. 7. 4.
+	 * @Method Name : deleteContact
+	 * @param ContactVO
+	 * @throws DataNotFoundException
+	 */
+	public void modifyContactReply(ContactVO vo) throws DataNotFoundException {
+		ContactVO updateVO = contactRepo.selectContact(vo);
+		
+		if (updateVO == null) {
+			throw new DataNotFoundException("삭제할 정보가 존재하지 않습니다. [" + vo.getSno() + "]");
+		}
+		
+		contactRepo.updateReply(vo);
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : contact 정보 삭제
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo.Seok
+	 * @Date	: 2021. 7. 4.
+	 * @Method Name : deleteContact
+	 * @param ContactVO
+	 * @throws DataNotFoundException
+	 */
+	public void deleteContact(ContactVO vo) throws DataNotFoundException {
+		ContactVO deleteVO = contactRepo.selectContact(vo);
+		
+		if (deleteVO == null) {
+			throw new DataNotFoundException("삭제할 정보가 존재하지 않습니다. [" + vo.getSno() + "]");
+		}
+		
+		contactRepo.deleteContact(deleteVO);
+	}
 }
