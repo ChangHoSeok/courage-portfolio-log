@@ -35,6 +35,11 @@
 		 WHERE SNO = #{sno}
 	</select>
 	
+	<select id="selectContactListCnt" parameterType="ContactVO" resultType="int">
+		SELECT COUNT(1)
+		  FROM TB_CONTACT
+	</select>
+	
 	<select id="selectContactList" parameterType="ContactVO" resultMap="contactList-resultMap">
 		SELECT 
 			SNO AS sno,
@@ -45,7 +50,8 @@
 			REPLY AS reply,
 			strftime('%Y-%m-%d %H:%M:%S.%f', REGISTER_DATE) AS registerDate
 		  FROM TB_CONTACT
-		 ORDER BY REGISTER_DATE DESC
+		 ORDER BY SNO DESC
+		 LIMIT #{offset}, #{size}
 	</select>
 	
 	<update id="updateReply" parameterType="ContactVO">

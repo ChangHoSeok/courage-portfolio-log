@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,13 +19,18 @@ import kr.pe.courage.admin.service.AdminService;
 import kr.pe.courage.common.CreateValidateGroup;
 import kr.pe.courage.common.DeleteValidateGroup;
 import kr.pe.courage.common.ModifyValidateGroup;
+import kr.pe.courage.common.PaginationVO;
 import kr.pe.courage.contact.domain.ContactReplyModifyValidateGroup;
 import kr.pe.courage.contact.domain.ContactVO;
+import kr.pe.courage.properties.CourageProperties;
 import kr.pe.courage.setup.domain.SetupVO;
 
 @RestController
 @RequestMapping("/admin")
 public class AdminRestController {
+	@Autowired
+	private CourageProperties courageProp;
+	
 	@Autowired
 	private AdminService adminService;
 	
@@ -61,9 +68,14 @@ public class AdminRestController {
 	@RequestMapping(value = "/contact",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public @ResponseBody Map<String, Object> retrieveContactList(ContactVO contactVO) throws Exception {
+	public @ResponseBody Map<String, Object> retrieveContactList(ContactVO contactVO, PaginationVO paginationVO,
+			@RequestParam(name = "page", required = false) int page,
+			@RequestParam(name = "size", required = false) int size) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 		
+		paginationVO.setPage(page <= 0 ? 1 : page);
+		paginationVO.setSize(size <= 0 ? Integer.parseInt(courageProp.getProp("courage.board.contact.page-size")) : size);
+		paginationVO.setTotalCnt(adminService.selectContactListCnt(contactVO));
 		resultMap.put("resultList", adminService.selectContactList(contactVO));
 		
 		return resultMap;

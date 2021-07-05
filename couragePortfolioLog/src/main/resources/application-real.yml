@@ -60,3 +60,6 @@ courage:
       url: https://www.gravatar.com/avatar/
       defaultImg: /images/avatar/anonymous.png
       size: 50
+  board:
+    contact:
+      page-size: 15

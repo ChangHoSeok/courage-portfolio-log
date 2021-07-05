@@ -59,6 +59,21 @@ public class AdminService {
 	
 	/**
 	 * <pre>
+	 * 1. 개요 : contact 목록 갯수 조회
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo.Seok
+	 * @Date	: 2021. 7. 5.
+	 * @Method Name : selectContactListCnt
+	 * @param ContactVO
+	 * @return int
+	 */
+	public int selectContactListCnt(ContactVO vo) {
+		return contactRepo.selectContactListCnt(vo);
+	}
+	
+	/**
+	 * <pre>
 	 * 1. 개요 : contact 목록 조회
 	 * </pre>
 	 * 
@@ -67,7 +82,6 @@ public class AdminService {
 	 * @Method Name : selectContactList
 	 * @param ContactVO
 	 * @return List<ContactVO>
-	 * @throws DataNotFoundException
 	 */
 	public List<ContactVO> selectContactList(ContactVO vo) {
 		return contactRepo.selectContactList(vo);

@@ -33,6 +33,19 @@ public interface ContactRepository {
 	
 	/**
 	 * <pre>
+	 * 1. 개요 : Contact 목록 갯수 조회
+	 * </pre>
+	 * 
+	 * @Author	: ChangHo.Seok
+	 * @Date	: 2021. 7. 5.
+	 * @Method Name : selectContactListCnt
+	 * @param ContactVO
+	 * @return int
+	 */
+	public int selectContactListCnt(ContactVO vo);
+	
+	/**
+	 * <pre>
 	 * 1. 개요 : Contact 목록 조회
 	 * </pre>
 	 * 
