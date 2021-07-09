@@ -11,20 +11,11 @@
 <th:block layout:fragment="jsResource">
 <script type="text/javascript">
 <!--
-	function initSwitch() {
-		if ($(".js-switch")[0]) {
-			var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
-			elems.forEach(function(html) {
-				var switchery = new Switchery(html, {
-					color : '#26B99A'
-				});
-			});
-		}
-	}
+	var hasNext = false;
 	
-	function initContact() {
+	function retrieveContact(sno) {
 		$.ajax({
-			url: jsContextPath + "/admin/contact",
+			url: jsContextPath + "/admin/contact?sno=" + sno,
 			type: "GET",
 	        dataType:'json',
 	        contentType : 'application/json; charset=UTF-8',
@@ -33,13 +24,21 @@
 	        	if (json) {
 	        		if (!utils.isEmpty(json.resultList) && json.resultList.length > 0) {
 	        			for (idx in json.resultList) {
+	        				var sno = json.resultList[idx].sno;
 		        			var messageEle = $('#messageTemplate').clone().css('display', '');
-		        			$(messageEle).attr('id', 'messageTemplate_' + json.resultList[idx].sno);
-		        			$(messageEle).find('.js-switch').data('sno', json.resultList[idx].sno);
-		        			$(messageEle).find('.js-switch').prop('checked', json.resultList[idx].reply == 'Y' ? true : false);
-		        			$(messageEle).find('.btnDelete').data('sno', json.resultList[idx].sno);
+		        			var isRead = json.resultList[idx].reply == 'Y' ? true : false;
+		        			
+		        			$(messageEle).data('sno', sno);
+		        			$(messageEle).attr('id', 'messageTemplate_' + sno);
+		        			$(messageEle).find('.js-switch').data('sno', sno);
+		        			$(messageEle).find('.js-switch').prop('checked', isRead);
+		        			$(messageEle).find('.btnDelete').data('sno', sno);
 		        			$(messageEle).find('#name').html(json.resultList[idx].name);
 		        			$(messageEle).find('#message').html(json.resultList[idx].message.replace(/ /gi, '&nbsp;').replace(/\r\n/gi, '<br />'));
+		        			
+		        			if (!isRead) {
+		        				$(messageEle).find('#message').addClass('unread');
+		        			}
 		        			
 		        			if (utils.isEmpty(json.resultList[idx].phone)) {
 		        				$(messageEle).find('#phone').prev().remove();
@@ -56,9 +55,23 @@
 		        			$(messageEle).find('#time').html(registerDate.format('HH:mm'));
 		        			
 		        			$('#messageList').append(messageEle);
+		        			
+		        			new Switchery($(messageEle).find('.js-switch')[0], {
+		    					color : '#26B99A'
+		    				});
 		        		}
 	        			
-	        			initSwitch();
+	        			hasNext = json.totalCnt > $('#messageList > li:visible').length;
+	        			
+	        			// 계속되는 컨텐츠가 존재하는데 화면에 다 표시되지 않은 경우 계속해서 다음 컨텐츠 조회
+	        			if (hasNext) {
+	        				if ($('#messageList').height() < $(window).height()) {
+		        				var lastSno = $('#messageList li:visible:last').data('sno');
+		        				retrieveContact(lastSno);
+	        				}
+	        			} else {
+	        				$('#messageList').append($('#messageLast').clone().css('display', ''));
+	        			}
 	        		} else {
 	        			$('#messageEmpty').show();
 	        		}
@@ -72,7 +85,7 @@
 	}
 
 	$(document).ready(function() {
-		initContact();
+		retrieveContact(0);
 		
 		$(document).on('click', '.btnDelete', function() {
 			if (!confirm('삭제 하시겠습니까?')) {
@@ -107,16 +120,23 @@
 		
 		$(document).on('click', '.js-switch', function() {
 			var sno = $(this).data('sno');
+			var reply = $(this).prop('checked') ? 'Y' : 'N';
 			
 			$.ajax({
 				url: jsContextPath + "/admin/contact/" + sno + '/reply',
 				type: "PUT",
 		        dataType:'json',
-		        data: JSON.stringify({'reply' : $(this).prop('checked') ? 'Y' : 'N'}),
+		        data: JSON.stringify({'reply' : reply}),
 		        contentType : 'application/json; charset=UTF-8',
 		        cache: false,
 		        success: function(json) {
 		        	if (json.result == 'success') {
+		        		
+		        		if (reply == 'Y') {
+			        		$('#messageTemplate_' + sno).find('#message').removeClass('unread');
+		        		} else {
+		        			$('#messageTemplate_' + sno).find('#message').addClass('unread');
+		        		}
 		        		utils.alertInfo('저장 되었습니다.');
 		        	}
 		        },
@@ -126,6 +146,23 @@
 				}
 			});
 		});
+	});
+	
+	$(window).scroll(function() {
+		if ($(window).scrollTop() > $(document).height() - $(window).height() - 35) {
+			if (hasNext) {
+				var lastSno = $('#messageList li:visible:last').data('sno');
+				retrieveContact(lastSno);
+			}
+		}
+	});
+	
+	$(window).resize(function() {
+		// 계속되는 컨텐츠가 존재하는데 화면에 다 표시되지 않은 경우 계속해서 다음 컨텐츠 조회
+		if (hasNext && $('#messageList').height() < $(window).height()) {
+			var lastSno = $('#messageList li:visible:last').data('sno');
+			retrieveContact(lastSno);
+		}
 	});
 //-->
 </script>
@@ -187,6 +224,14 @@
 									<div class="message_wrapper">
 										<blockquote id="message" class="message">
 											등록된 데이터가 없습니다.
+										</blockquote>
+									</div>
+								</li>
+								
+								<li id="messageLast" style="display: none;">
+									<div class="message_wrapper">
+										<blockquote id="message" class="message">
+											마지막 컨텐츠 입니다.
 										</blockquote>
 									</div>
 								</li>

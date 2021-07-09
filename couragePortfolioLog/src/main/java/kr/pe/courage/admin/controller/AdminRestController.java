@@ -68,14 +68,12 @@ public class AdminRestController {
 	@RequestMapping(value = "/contact",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public @ResponseBody Map<String, Object> retrieveContactList(ContactVO contactVO, PaginationVO paginationVO,
-			@RequestParam(name = "page", required = false) int page,
-			@RequestParam(name = "size", required = false) int size) throws Exception {
+	public @ResponseBody Map<String, Object> retrieveContactList(ContactVO contactVO,
+			@RequestParam(name = "size", required = false, defaultValue = "0") int size) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 		
-		paginationVO.setPage(page <= 0 ? 1 : page);
-		paginationVO.setSize(size <= 0 ? Integer.parseInt(courageProp.getProp("courage.board.contact.page-size")) : size);
-		paginationVO.setTotalCnt(adminService.selectContactListCnt(contactVO));
+		contactVO.setPageSize(size <= 0 ? Integer.parseInt(courageProp.getProp("board.contact.page-size")) : size);
+		resultMap.put("totalCnt", adminService.selectContactListCnt(contactVO));
 		resultMap.put("resultList", adminService.selectContactList(contactVO));
 		
 		return resultMap;

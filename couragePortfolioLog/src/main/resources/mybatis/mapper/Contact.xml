@@ -50,8 +50,11 @@
 			REPLY AS reply,
 			strftime('%Y-%m-%d %H:%M:%S.%f', REGISTER_DATE) AS registerDate
 		  FROM TB_CONTACT
+		 <if test="sno > 0">
+		 	<![CDATA[ WHERE SNO < #{sno} ]]>
+		 </if>
 		 ORDER BY SNO DESC
-		 LIMIT #{offset}, #{size}
+		 LIMIT #{pageSize}
 	</select>
 	
 	<update id="updateReply" parameterType="ContactVO">

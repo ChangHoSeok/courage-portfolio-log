@@ -19,8 +19,8 @@ import java.util.List;
  * </pre>
  */
 public class PaginationVO {
-	private int page = 1;
-	private int size = 15;
+	private int currentPage = 1;
+	private int pageSize = 15;
 	private int offset;
 	
 	private int totalCnt;
@@ -29,26 +29,26 @@ public class PaginationVO {
 	
 	private List<Object> resultList;
 	
-	public int getPage() {
-		return page;
+	public int getCurrentPage() {
+		return currentPage;
 	}
 
-	public void setPage(int page) {
-		this.page = page;
+	public void setCurrentPage(int page) {
+		this.currentPage = page;
 		
-		if (this.size > 0) {
+		if (this.pageSize > 0) {
 			setOffset();
 		}
 	}
 
-	public int getSize() {
-		return size;
+	public int getPageSize() {
+		return pageSize;
 	}
 
-	public void setSize(int size) {
-		this.size = size;
+	public void setPageSize(int size) {
+		this.pageSize = size;
 		
-		if (this.page > 0) {
+		if (this.currentPage > 0) {
 			setOffset();
 		}
 	}
@@ -58,7 +58,7 @@ public class PaginationVO {
 	}
 	
 	private void setOffset() {
-		this.offset = (this.page * this.size) - this.size;
+		this.offset = (this.currentPage * this.pageSize) - this.pageSize;
 	}
 
 	public int getTotalCnt() {
@@ -69,9 +69,9 @@ public class PaginationVO {
 		this.totalCnt = totalCnt;
 		
 		if (this.totalCnt > 0) {
-			this.totalPageSize = Math.round(this.totalCnt / this.size);
+			this.totalPageSize = Math.round(this.totalCnt / this.pageSize);
 			
-			if (this.page < this.totalPageSize) {
+			if (this.currentPage < this.totalPageSize) {
 				this.hasNextPage = true;
 			} else {
 				this.hasNextPage = false;

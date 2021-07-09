@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import kr.pe.courage.common.CreateValidateGroup;
 import kr.pe.courage.common.ModifyValidateGroup;
+import kr.pe.courage.common.PageInfoVO;
 import kr.pe.courage.common.PaginationVO;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class ContactVO {
+public class ContactVO extends PageInfoVO {
 	private int sno;
 	
 	@NotEmpty(

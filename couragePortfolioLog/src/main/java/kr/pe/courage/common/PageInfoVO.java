@@ -8,5 +8,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class PageInfoVO {
-	
+	private int offset;
+	private int pageSize;
 }
